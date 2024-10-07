@@ -1,0 +1,129 @@
+
+/* bootstrap */
+@import './bootstrap.min.css';
+
+/* fontawesome */
+@import './fontawesome.css';
+
+/* animate */
+@import './animate.css';
+
+/* swiper */
+@import './swiper.min.css';
+
+/* odometer */
+@import './odometer.css';
+
+/* nice-select.css */
+@import './nice-select.css';
+
+/* jquery-ui.min.css */
+@import './jquery-ui.min.css';
+
+/* magnific-popup.css */
+@import './magnific-popup.css';
+
+/* main.css */
+@import './main.css';
+
+/* slick.css */
+@import './slick.css';
+
+/* style.css */
+@import './style.css';
+
+/* Custom Tambahan */
+@import './tambahan.css';
+
+/* apexcharts.css */
+@import './apexcharts.css';
+
+/* leaflet_1.3.1.css */
+@import './leaflet_1.3.1.css';
+
+/* exmaple-style.css */
+@import './exmaple-style.css';
+
+
+#petaIdl {
+  /* height: 400px; */
+  width: 100%;
+  position: relative;
+}
+
+.th-hero-wrapper {
+  max-height: 785px; /* Batasi tinggi maksimal */
+  overflow: hidden; /* Sembunyikan bagian gambar yang melebihi batas */
+  position: relative;
+}
+
+.th-hero-wrapper .th-hero-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Gambar tetap proporsional */
+  object-position: center; /* Posisikan gambar di tengah */
+}
+
+.xb-testimonial__nav ul_li mt-5 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.contact {
+  position: relative;
+}
+
+.map-container {
+  position: absolute;
+  top: 33%;
+  transform: translateY(-50%);
+  z-index: -1;
+  right: 0;
+  bottom: 0;
+}
+
+/* Media query untuk tampilan mobile */
+@media (max-width: 768px) {
+  .pb-130 {
+    padding-bottom: 10px; /* Atur padding bottom menjadi 80px */
+  }
+
+  .xb-country .xb-item--item {
+      width: 100%;
+  }
+
+  .xb-country-nav.nav-tabs .nav-item {
+    width: 100%;
+    text-align: center;
+  }
+
+  .widget-category.country-widget {
+    height: auto !important;
+    overflow-y: visible !important;
+  }
+
+  .pt-120 {
+    padding-top: 30px; /* Atur padding bottom menjadi 80px */
+  }
+  .map-container {
+    position: relative; /* Ubah posisi menjadi relative untuk tampilan mobile */
+    top: auto; /* Reset nilai top */
+    transform: none; /* Reset transformasi */
+    margin: 0 auto; /* Center iframe */
+    width: 100%; /* Lebar 100% */
+    height: 400px; /* Atur tinggi iframe */
+  }
+
+  iframe {
+    width: 100%; /* Atur lebar iframe 100% */
+    height: 100%; /* Atur tinggi iframe 100% */
+  }
+}
+
+@media (max-width: 991px) {
+  .xb-country .xb-item--item {
+      width: 100%;
+  }
+}
