@@ -156,7 +156,7 @@ const Home = () => {
                       <span className="subtitle">
                         Informasi Pemerintahan Daerah
                       </span>
-                      <h3 className="sec-title--heading">Berita Terbaru1</h3>
+                      <h3 className="sec-title--heading">Berita Terbaru</h3>
                     </div>
                     <div className="xb-service__btn">
                       <Link href="/berita" className="xb-tran-btn__xp">
