@@ -135,7 +135,7 @@ const KepalaDaerah = () => {
                         </p>
                         <h4 className="fw-bold">Karir dan Organisasi</h4>
                         <div className="timelines">
-                          {kepala.careers.map((entry, idx) => (
+                          {kepala.careers.map((entry: any, idx: number) => (
                             <div className="entry" key={idx}>
                               <div className="title">
                                 <h3>
@@ -151,7 +151,7 @@ const KepalaDaerah = () => {
                         </div>
                         <h4 className="fw-bold mt-20">Pendidikan</h4>
                         <div className="single-content__feature ul_li">
-                          {kepala.educations.map((edu, idx) => (
+                          {kepala.educations.map((edu: any, idx: number) => (
                             <div className="single-content-feature" key={idx}>
                               <div className="xb-item--inner color-3 ul_li">
                                 <div className="xb-item--icon">
