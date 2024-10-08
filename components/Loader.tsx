@@ -1,10 +1,14 @@
+import Image from 'next/image';
+
 const Loader = () => {
   return (
     <>
       <div id="xb-loadding">
         <div className="loader">
           <div className="plane">
-            <img className="plane-img" src="/img/icon/plane.gif" alt="" />
+            <Image className="plane-img" src="/img/icon/plane.gif" alt="" 
+              width={100} height={100}
+            />
           </div>
           <div className="earth-wrapper">
             <div className="earth" />
