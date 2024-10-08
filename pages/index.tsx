@@ -621,6 +621,7 @@ const Home = () => {
                       <li className="nav-item" role="presentation">
                         <a
                           href="#"
+                          onClick={(e) => e.preventDefault()}
                           className="nav-link "
                           id="xbc-pdd"
                           data-bs-toggle="tab"
@@ -636,6 +637,7 @@ const Home = () => {
                       <li className="nav-item" role="presentation">
                         <a
                           href="#"
+                          onClick={(e) => e.preventDefault()}
                           className="nav-link active"
                           id="xbc-jk"
                           data-bs-toggle="tab"
@@ -651,6 +653,7 @@ const Home = () => {
                       <li className="nav-item" role="presentation">
                         <a
                           href="#"
+                          onClick={(e) => e.preventDefault()}
                           className="nav-link"
                           id="xbc-edu"
                           data-bs-toggle="tab"
