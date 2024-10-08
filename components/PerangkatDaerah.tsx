@@ -50,7 +50,7 @@ const PerangkatDaerah = () => {
   // Panggil data pertama kali dengan filter "Perangkat Daerah"
   useEffect(() => {
     fetchData(filter);
-  }, []);
+  }, [filter]);
 
   const handleSearchClick = () => {
     fetchData(filter);
