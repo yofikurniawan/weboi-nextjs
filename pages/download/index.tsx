@@ -101,7 +101,7 @@ const Download = () => {
                                     <div className="xb-item--inner">
                                       <div className="xb-item--icon">
                                         <Image
-                                          src="/img/icon/pdf.svg"
+                                          src="/images/icon/pdf.svg"
                                           alt=""
                                           width={25}
                                           height={25}

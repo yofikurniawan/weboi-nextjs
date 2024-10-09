@@ -76,7 +76,7 @@ const Contact: React.FC = () => {
                       <div className="xb-item--inner ul_li">
                         <div className="xb-item--icon">
                           <Image
-                            src="/img/icon/f_mail.svg"
+                            src="/images/icon/f_mail.svg"
                             alt=""
                             width={24}
                             height={24}
@@ -98,7 +98,7 @@ const Contact: React.FC = () => {
                       <div className="xb-item--inner color-2 ul_li">
                         <div className="xb-item--icon">
                           <Image
-                            src="/img/icon/f_call.svg"
+                            src="/images/icon/f_call.svg"
                             alt=""
                             width={24}
                             height={24}
@@ -120,7 +120,7 @@ const Contact: React.FC = () => {
                       <div className="xb-item--inner color-4 ul_li">
                         <div className="xb-item--icon">
                           <Image
-                            src="/img/icon/ig.svg"
+                            src="/images/icon/ig.svg"
                             alt="Instagram Icon"
                             width={24}
                             height={24}
@@ -144,7 +144,7 @@ const Contact: React.FC = () => {
                       <div className="xb-item--inner color-3 ul_li">
                         <div className="xb-item--icon">
                           <Image
-                            src="/img/icon/fb.svg"
+                            src="/images/icon/fb.svg"
                             alt="Facebook Icon"
                             width={24}
                             height={24}
@@ -168,7 +168,7 @@ const Contact: React.FC = () => {
                       <div className="xb-item--inner color-4 ul_li">
                         <div className="xb-item--icon">
                           <Image
-                            src="/img/icon/yt.svg"
+                            src="/images/icon/yt.svg"
                             alt=""
                             width={24}
                             height={24}

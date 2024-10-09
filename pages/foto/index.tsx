@@ -116,7 +116,7 @@ const Foto = () => {
                           href={`/foto/${item.slug}`}
                         >
                           <Image
-                            src="/img/icon/long_arrow_right.svg"
+                            src="/images/icon/long_arrow_right.svg"
                             alt="Selengkapnya"
                             width={15}
                             height={10}

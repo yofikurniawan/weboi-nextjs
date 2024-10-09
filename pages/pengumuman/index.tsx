@@ -96,7 +96,7 @@ const Pengumuman = () => {
                       <div className="xb-item--img">
                         <a href={`/pengumuman/${item.slug}`}>
                           <Image
-                            src={item.thumbnail || "/img/web/img/default.jpg"}
+                            src={item.thumbnail || "/images/aplikasi_icon/oganilirbangkit.png"}
                             alt={item.title}
                             width={1250}
                             height={1000}
@@ -116,7 +116,7 @@ const Pengumuman = () => {
                           href={`/pengumuman/${item.slug}`}
                         >
                           <Image
-                            src="/img/icon/long_arrow_right.svg"
+                            src="/images/icon/long_arrow_right.svg"
                             alt="Selengkapnya"
                             width={15}
                             height={10}

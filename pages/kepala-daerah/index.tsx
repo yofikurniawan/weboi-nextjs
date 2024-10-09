@@ -156,7 +156,7 @@ const KepalaDaerah = () => {
                               <div className="xb-item--inner color-3 ul_li">
                                 <div className="xb-item--icon">
                                   <Image
-                                    src="/img/icon/teacher.svg" // Ganti dengan icon sesuai API jika ada
+                                    src="/images/icon/teacher.svg" // Ganti dengan icon sesuai API jika ada
                                     alt=""
                                     width={20}
                                     height={20}
