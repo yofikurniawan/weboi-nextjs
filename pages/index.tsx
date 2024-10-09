@@ -427,7 +427,7 @@ const Home = () => {
                                   className="xb-item--img img-fluid large-image"
                                 >
                                   <Image
-                                    src="/images/banner/layanan.png"
+                                    src="https://dev-backend.oganilirkab.go.id/weboi/images/banner/layanan.png"
                                     alt=""
                                     width={2000}
                                     height={100}
@@ -441,7 +441,7 @@ const Home = () => {
                                   className="xb-item--img img-fluid large-image"
                                 >
                                   <Image
-                                    src="/images/banner/layanan.png"
+                                    src="https://dev-backend.oganilirkab.go.id/weboi/images/banner/layanan.png"
                                     alt=""
                                     width={2000}
                                     height={100}
@@ -661,7 +661,7 @@ const Home = () => {
                     <div className="row">
                       <video className="video_profil" controls height="508">
                         <source
-                          src="/video/Profil_Ogan_Ilir.mp4"
+                          src="https://dev-backend.oganilirkab.go.id/weboi/video/Profil_Ogan_Ilir.mp4"
                           type="video/mp4"
                         />
                         <source
@@ -709,9 +709,11 @@ const Home = () => {
                           border: 5px solid #edf3f5;
                         }
                       `}</style>
-
                       <video className="video_profil_senai" controls>
-                        <source src="/video/transenai.mp4" type="video/mp4" />
+                        <source
+                          src="https://dev-backend.oganilirkab.go.id/weboi/video/transenai.mp4"
+                          type="video/mp4"
+                        />
                         <source src="/video/transenai.ogg" type="video/ogg" />
                         Your browser does not support the video tag.
                       </video>
