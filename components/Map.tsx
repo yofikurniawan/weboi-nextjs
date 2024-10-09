@@ -141,7 +141,7 @@ const MapComponent = () => {
             <h2 className="card-title">Kabupaten Ogan Ilir</h2>
             <Image
               className="card-img"
-              src="/img/web/oganilirkab.jpg"
+              src="/images/web/oganilirkab.jpg"
               alt="OganIlirBangkit"
               width={300}
               height={200}

@@ -200,7 +200,7 @@ const Home = () => {
                                 <li>
                                   <span>
                                     <Image
-                                      src="/img/icon/cat.svg"
+                                      src="/images/icon/cat.svg"
                                       alt=""
                                       width={20}
                                       height={20}
@@ -211,7 +211,7 @@ const Home = () => {
                                 <li>
                                   <span>
                                     <Image
-                                      src="/img/icon/calendar2.svg"
+                                      src="/images/icon/calendar2.svg"
                                       alt=""
                                       width={20}
                                       height={20}
@@ -222,7 +222,7 @@ const Home = () => {
                                 <li>
                                   <span>
                                     <Image
-                                      src="/img/icon/comment.svg"
+                                      src="/images/icon/comment.svg"
                                       alt=""
                                       width={20}
                                       height={20}
@@ -272,7 +272,7 @@ const Home = () => {
                                     <li>
                                       <span>
                                         <Image
-                                          src="/img/icon/cat.svg"
+                                          src="/images/icon/cat.svg"
                                           alt=""
                                           width={20}
                                           height={20}
@@ -313,7 +313,7 @@ const Home = () => {
             <div className="shape shape--1">
               <div className="shape-inner" data-parallax='{"x":-50,"y":-70}'>
                 <Image
-                  src="/img/shape/b_shape1.png"
+                  src="/images/shape/b_shape1.png"
                   alt=""
                   width={100}
                   height={100}
@@ -323,7 +323,7 @@ const Home = () => {
             <div className="shape shape--2">
               <div className="shape-inner" data-parallax='{"x":50,"y":-80}'>
                 <Image
-                  src="/img/shape/b_shape2.png"
+                  src="/images/shape/b_shape2.png"
                   alt=""
                   width={100}
                   height={100}
@@ -431,7 +431,7 @@ const Home = () => {
                                   className="xb-item--img img-fluid large-image"
                                 >
                                   <Image
-                                    src="/img/banner/layanan.png"
+                                    src="/images/banner/layanan.png"
                                     alt=""
                                     width={2000}
                                     height={100}
@@ -445,7 +445,7 @@ const Home = () => {
                                   className="xb-item--img img-fluid large-image"
                                 >
                                   <Image
-                                    src="/img/banner/layanan.png"
+                                    src="/images/banner/layanan.png"
                                     alt=""
                                     width={2000}
                                     height={100}
@@ -458,23 +458,6 @@ const Home = () => {
                       </div>
                     </div>
                     {/* telpon nomor darurat button */}
-                    <div className="text-center">
-                      <button
-                        className="btn btn-info btn-lg me-3 text-center text-white"
-                        style={{ backgroundColor: "#164cbb" }}
-                        onClick={() => (window.location.href = "tel:112")}
-                      >
-                        <Image
-                          src="/img/icon/f_call.svg"
-                          alt="call icon"
-                          className="me-2"
-                          style={{ width: "24px", height: "24px" }}
-                          height={24}
-                          width={24}
-                        />
-                        Calling
-                      </button>
-                    </div>
                   </section>
                 </div>
               </div>
@@ -560,7 +543,7 @@ const Home = () => {
                     >
                       <div className="xb-item--flag">
                         <Image
-                          src="/img/more.svg"
+                          src="/images/icon/more.svg"
                           alt="Selengkapnya"
                           width={150}
                           height={150}

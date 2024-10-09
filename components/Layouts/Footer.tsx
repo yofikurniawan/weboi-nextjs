@@ -1,7 +1,6 @@
 // Desc: Footer component
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import Breadcrumb from "../../components/Breadcrumb";
 import { fetchDataIdentity } from "@/apis/fetchdata";
 import Link from "next/link";
 
@@ -43,7 +42,7 @@ const Footer = () => {
                 <li className="ul_li">
                   <span>
                     <Image
-                      src="/img/icon/f_call.svg"
+                      src="/images/footer/icon/f_call.svg"
                       alt=""
                       width={20}
                       height={20}
@@ -56,7 +55,7 @@ const Footer = () => {
                 <li className="ul_li">
                   <span>
                     <Image
-                      src="/img/icon/f_mail.svg"
+                      src="/images/footer/icon/f_mail.svg"
                       alt=""
                       width={20}
                       height={20}
@@ -353,14 +352,14 @@ const Footer = () => {
           </div>
           <div className="mt-20">
             <Image
-              src="/img/aplikasi_icon/lisensi.png"
+              src="/images/aplikasi_icon/lisensi.png"
               style={{ height: "30px !important" }}
               alt=""
               width={100}
               height={100}
             />
             <Image
-              src="/img/aplikasi_icon/oganilirbangkit.png"
+              src="/images/aplikasi_icon/oganilirbangkit.png"
               style={{ height: "30px !important", marginLeft: 10 }}
               alt=""
               width={100}

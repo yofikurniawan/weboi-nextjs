@@ -63,7 +63,7 @@ const HeroSection = () => {
                     ? { height: "600px" }
                     : {}),
                 }}
-                src={terbaru[activeIndex]?.thumbnail || "/img/logo/logo.svg"}
+                src={terbaru[activeIndex]?.thumbnail || "/images/logo/fav.svg"}
                 alt={terbaru[activeIndex]?.title || "Default Image"}
                 width={1920}
                 height={550}

@@ -13,12 +13,15 @@ const Breadcrumb = ({ breadcrumbData }: BreadcrumbProps) => {
   return (
     <section
       className="breadcrumb pos-rel bg_img"
-      style={{ backgroundImage: "url(/img/web/banner_breadcrumb_oi.webp)" }}
+      style={{ backgroundImage: "url(/images/web/breadcrumb.png)" }}
     >
       <div className="container">
         <div className="breadcrumb__content">
           {/* Title Breadcrumb */}
-          <h2 className="breadcrumb__title " style={ { textShadow: "2px 4px 4px #ffffff" } }>
+          <h2
+            className="breadcrumb__title "
+            style={{ textShadow: "2px 4px 4px #ffffff" }}
+          >
             {breadcrumbData[breadcrumbData.length - 1]?.title || "Page Title"}
           </h2>
 
@@ -49,7 +52,7 @@ const Breadcrumb = ({ breadcrumbData }: BreadcrumbProps) => {
         <div className="shape shape--1">
           <div className="shape-inner" data-parallax='{"x":-50,"y":80}'>
             <Image
-              src="/img/shape/br_shape1.png"
+              src="/images/shape/br_shape1.png"
               alt=""
               width={100}
               height={100}
@@ -59,7 +62,7 @@ const Breadcrumb = ({ breadcrumbData }: BreadcrumbProps) => {
         <div className="shape shape--2">
           <div className="shape-inner" data-parallax='{"x":50,"y":-90}'>
             <Image
-              src="/img/shape/br_shape2.png"
+              src="/images/shape/br_shape2.png"
               alt=""
               width={100}
               height={100}

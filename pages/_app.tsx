@@ -35,33 +35,7 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
         src="https://website-widgets.pages.dev/dist/sienna.min.js"
         strategy="beforeInteractive"
       />
-      <Script
-        src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"
-        strategy="beforeInteractive"
-      />
-      <Script src="/js/bootstrap.bundle.min.js" strategy="lazyOnload" />
-      <Script src="/js/swiper.min.js" strategy="lazyOnload" />
-      <Script src="/js/wow.min.js" strategy="lazyOnload" />
-      <Script src="/js/appear.js" strategy="lazyOnload" />
-      <Script src="/js/odometer.min.js" strategy="lazyOnload" />
-      <Script src="/js/jquery.nice-select.min.js" strategy="lazyOnload" />
-      <Script src="/js/imagesloaded.pkgd.min.js" strategy="lazyOnload" />
-      <Script src="/js/isotope.pkgd.min.js" strategy="lazyOnload" />
-      <Script src="/js/jquery.magnific-popup.min.js" strategy="lazyOnload" />
-      <Script src="/js/main.js" strategy="lazyOnload" />
-      <Script src="/vendor/apex_chart/apexcharts.js" strategy="lazyOnload" />
-      <Script
-        async
-        src="https://www.instagram.com/embed.js"
-        strategy="afterInteractive"
-      />
-      <Script
-        src="https://cdn.jsdelivr.net/npm/apexsankey"
-        strategy="lazyOnload"
-      />
-      <Script src="/js/apexchart.js" strategy="lazyOnload" />
-      <Script src="/exmaple/map.js" strategy="lazyOnload" />
-
+      <Script src="/js/bootstrap.bundle.min.js" strategy="lazyOnload" /> 
       {getLayout(<Component {...pageProps} />)}
     </>
   );

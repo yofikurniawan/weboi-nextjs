@@ -6,7 +6,7 @@ const Loader = () => {
       <div id="xb-loadding">
         <div className="loader">
           <div className="plane">
-            <Image className="plane-img" src="/img/icon/plane.gif" alt="" 
+            <Image className="plane-img" src="/images/icon/plane.gif" alt="" 
               width={100} height={100}
             />
           </div>
