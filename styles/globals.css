@@ -1,33 +1,14 @@
-
-/* bootstrap */
-@import './bootstrap.min.css';
+/* animate */
+@import './animate.css';
 
 /* fontawesome */
 @import './fontawesome.css';
 
-/* animate */
-@import './animate.css';
-
-/* swiper */
-@import './swiper.min.css';
-
-/* odometer */
-@import './odometer.css';
-
-/* nice-select.css */
-@import './nice-select.css';
-
-/* jquery-ui.min.css */
-@import './jquery-ui.min.css';
-
-/* magnific-popup.css */
-@import './magnific-popup.css';
+/* bootstrap */
+@import './bootstrap.min.css';
 
 /* main.css */
 @import './main.css';
-
-/* slick.css */
-@import './slick.css';
 
 /* style.css */
 @import './style.css';
@@ -35,14 +16,8 @@
 /* Custom Tambahan */
 @import './tambahan.css';
 
-/* apexcharts.css */
-@import './apexcharts.css';
-
-/* leaflet_1.3.1.css */
-@import './leaflet_1.3.1.css';
-
 /* exmaple-style.css */
-@import './exmaple-style.css';
+@import './map.css';
 
 
 #petaIdl {

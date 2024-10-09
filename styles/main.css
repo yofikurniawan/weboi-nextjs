@@ -4875,7 +4875,7 @@ body .mfp-wrap .mfp-container .mfp-content .mfp-close:hover::before, body .mfp-w
     right: -55px;
     width: 3px;
     height: 46px;
-    background-image: url(/img/shape/c_line.png);
+    background-image: url(/images/shape/c_line.png);
     content: ""; }
     @media (max-width: 1199px) {
       .xb-country2::before {
@@ -6215,7 +6215,7 @@ article .post-title {
 
 blockquotes {
   background-color: #EDF3F5;
-  background-image: url(/img/bg/quote_bg.png);
+  background-image: url(/images/bg/quote_bg.png);
   background-repeat: no-repeat;
   background-size: cover;
   padding: 40px 55px;
@@ -7636,7 +7636,7 @@ a.ui-button:active, .ui-button:active,
   flex-direction: column;
   align-items: center; }
   .loader.style-2 .earth {
-    background: url("/img/bg/preloader-2.png"); }
+    background: url("/images/bg/preloader-2.png"); }
 
 .wait {
   margin: 5rem 0; }
@@ -7672,7 +7672,7 @@ a.ui-button:active, .ui-button:active,
 .earth {
   width: 160px;
   height: 160px;
-  background: url("/img/bg/preloader.png");
+  background: url("/images/bg/preloader.png");
   border-radius: 100%;
   background-size: 340px;
   animation: earthAnim 12s infinite linear;
@@ -8053,7 +8053,7 @@ a.ui-button:active, .ui-button:active,
   background-color: var(--color-white);
   z-index: 1020;
   transition-duration: 500ms;
-  background-image: url(/img/bg/sidebar_bg.jpg);
+  background-image: url(/images/bg/sidebar_bg.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center bottom;
