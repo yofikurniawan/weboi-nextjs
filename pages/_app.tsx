@@ -42,7 +42,6 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
       <Script src="/js/bootstrap.bundle.min.js" strategy="lazyOnload" />
       <Script src="/js/wow.min.js" strategy="lazyOnload" />
       <Script src="/js/main.js" strategy="lazyOnload" />
-      
       {getLayout(<Component {...pageProps} />)}
     </>
   );
