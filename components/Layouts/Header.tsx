@@ -319,7 +319,7 @@ const Header = () => {
                 <div className="header__logo">
                   <Link href="/">
                     <Image
-                      src="/img/logo/Logo_pemkab_oi.png"
+                      src="/images/logo/Logo_pemkab_oi.png"
                       alt=""
                       width={250}
                       height={150}
@@ -341,17 +341,6 @@ const Header = () => {
                   </div>
                 </div>
                 <ul className="header__action ul_li">
-                  {/* <li>
-                    <a className="header__search header-search-btn" href="#">
-                      <Image
-                        src="/img/icon/search.svg"
-                        alt=""
-                        width={20}
-                        height={20}
-                      />
-                      Search
-                    </a>
-                  </li> */}
                 </ul>
               </div>
             </div>
@@ -379,100 +368,16 @@ const Header = () => {
                 <div className="xb-logo-mobile xb-hide-xl">
                   <Link href="/" rel="home">
                     <Image
-                      src="/img/logo/Logo_pemkab_oi.png"
+                      src="/images/logo/Logo_pemkab_oi.png"
                       alt=""
-                      width={0}
-                      height={0}
+                      width={250}
+                      height={30}
                     />
                   </Link>
                 </div>
                 <nav className="xb-header-nav">
                   <ul className="xb-menu-primary clearfix">
                     {isMounted && data.length > 0 && renderMenuMobile(data)}
-
-                    {/* <li className="menu-item">
-                      <a href="index.html">
-                        <span>Beranda</span>
-                      </a>
-                    </li>
-
-                    <li className="menu-item menu-item-has-children">
-                      <a href="#!">
-                        <span>Mengenal Ogan Ilir</span>
-                      </a>
-                      <ul className="sub-menu">
-                        <li className="menu-item">
-                          <a href="starter_page.html">
-                            <span>Tentang Ogan Ilir</span>
-                          </a>
-                        </li>
-                        <li className="menu-item">
-                          <a href="starter_page.html">
-                            <span>Kepala Daerah</span>
-                          </a>
-                        </li>
-                        <li className="menu-item">
-                          <a href="starter_page.html">
-                            <span>Potensi Daerah</span>
-                          </a>
-                        </li>
-                        <li className="menu-item">
-                          <a href="starter_page.html">
-                            <span>Penghargaan</span>
-                          </a>
-                        </li>
-                        <li className="menu-item">
-                          <a href="starter_page.html">
-                            <span>Regulasi</span>
-                          </a>
-                        </li>
-                      </ul>
-                    </li>
-
-                    <li className="menu-item">
-                      <a href="akuntabilitas.html">
-                        <span>Akuntabilitas</span>
-                      </a>
-                    </li>
-
-                    <li className="menu-item menu-item-has-children">
-                      <a href="#!">
-                        <span>Informasi Publik</span>
-                      </a>
-                      <ul className="sub-menu">
-                        <li className="menu-item">
-                          <a href="berita.html">
-                            <span>Berita</span>
-                          </a>
-                        </li>
-                        <li className="menu-item">
-                          <a href="pengumuman.html">
-                            <span>Pengumuman</span>
-                          </a>
-                        </li>
-                        <li className="menu-item">
-                          <a href="foto.html">
-                            <span>Foto</span>
-                          </a>
-                        </li>
-                        <li className="menu-item">
-                          <a href="video.html">
-                            <span>Video</span>
-                          </a>
-                        </li>
-                        <li className="menu-item">
-                          <a href="download.html">
-                            <span>Download</span>
-                          </a>
-                        </li>
-                      </ul>
-                    </li>
-
-                    <li className="menu-item">
-                      <a href="contact.html">
-                        <span>Kontak</span>
-                      </a>
-                    </li> */}
                   </ul>
                 </nav>
               </div>

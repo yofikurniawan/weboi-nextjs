@@ -35,7 +35,14 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
         src="https://website-widgets.pages.dev/dist/sienna.min.js"
         strategy="beforeInteractive"
       />
-      <Script src="/js/bootstrap.bundle.min.js" strategy="lazyOnload" /> 
+      <Script
+        src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"
+        strategy="beforeInteractive"
+      />
+      <Script src="/js/bootstrap.bundle.min.js" strategy="lazyOnload" />
+      <Script src="/js/wow.min.js" strategy="lazyOnload" />
+      <Script src="/js/main.js" strategy="lazyOnload" />
+      
       {getLayout(<Component {...pageProps} />)}
     </>
   );

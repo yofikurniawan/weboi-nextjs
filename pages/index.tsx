@@ -16,6 +16,7 @@ import Loader from "@/components/Loader";
 
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import Scroll from "@/components/Scroll";
 
 import {
   fetchDataBeritaTerbaru,
@@ -130,12 +131,7 @@ const Home = () => {
 
   return (
     <>
-      <div className="xb-backtotop">
-        <a href="#" className="scroll">
-          <i className="far fa-arrow-up" />
-        </a>
-      </div>
-
+      <Scroll />
       {/* <Loader /> */}
 
       <div className="body-overlay" />
@@ -163,7 +159,7 @@ const Home = () => {
                         Berita Lainnya
                         <span>
                           <Image
-                            src="/img/icon/arrow_right.svg"
+                            src="/images/icon/arrow_right.svg"
                             alt=""
                             width={20}
                             height={20}
