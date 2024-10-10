@@ -13,7 +13,10 @@ const Breadcrumb = ({ breadcrumbData }: BreadcrumbProps) => {
   return (
     <section
       className="breadcrumb pos-rel bg_img"
-      style={{ backgroundImage: "url(/images/web/breadcrumb.png)" }}
+      style={{
+        backgroundImage:
+          "url(https://dev-backend.oganilirkab.go.id/weboi/images/breadcrumb.png)",
+      }}
     >
       <div className="container">
         <div className="breadcrumb__content">
