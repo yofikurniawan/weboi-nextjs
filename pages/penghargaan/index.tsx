@@ -143,6 +143,11 @@ const Penghargaan = () => {
                     placeholder="Cari Penghargaan..."
                     value={search}
                     onChange={handleSearchChange}
+                    style={{
+                      borderRadius: "5px",
+                      border: "1px solid #dee2e6",
+                      padding: "27px",
+                    }}
                   />
                 </div>
                 <div className="col-md-4">
@@ -160,16 +165,18 @@ const Penghargaan = () => {
                 </div>
                 <div className="col-md-2">
                   <button
-                    type="button"
+                    type="submit"
                     className="btn btn-secondary ms-2 me-2"
                     onClick={handleResetFilter}
                   >
                     Reset
                   </button>
                   <button
-                    type="button"
+                    type="submit"
                     className="btn btn-primary"
                     onClick={handleFilterSubmit}
+                    // preventDefault tidak diperlukan karena bukan dalam form
+                    
                   >
                     Filter
                   </button>

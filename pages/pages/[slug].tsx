@@ -10,6 +10,7 @@ import {
 } from "@/apis/fetchdata";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import Scroll from "@/components/Scroll";
 
 const DetailPages = ({}: any) => {
   const router = useRouter();
@@ -87,7 +88,7 @@ const DetailPages = ({}: any) => {
       </Head>
       <div>
         <Breadcrumb breadcrumbData={breadcrumbData} />
-
+        <Scroll />
         <div className="xb-backtotop">
           <a href="#" className="scroll">
             <i className="far fa-arrow-up" />
