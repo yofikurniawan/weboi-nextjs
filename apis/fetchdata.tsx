@@ -428,9 +428,22 @@ export async function fetchDataKepalaPemerintahan(periode: string = "2021 - 2024
 }
 
 // prestasi
-export async function fetchDataPrestasi(page: string = "1") {
+export async function fetchDataPrestasi(
+  page: string = "1",
+  search: string = "",
+  tahun: string = ""
+) {
   try {
-    const res = await axios.get(`${baseUri}/prestasi-list?page=${page}`, {
+    // Membentuk query params dengan opsional page, search, dan tahun
+    let queryParams = `?page=${page}`;
+    if (search) {
+      queryParams += `&search=${encodeURIComponent(search)}`;
+    }
+    if (tahun) {
+      queryParams += `&tahun=${encodeURIComponent(tahun)}`;
+    }
+
+    const res = await axios.get(`${baseUri}/prestasi-list${queryParams}`, {
       headers: {
         "Content-Type": "application/json",
         "X-API-Key": apiKey,

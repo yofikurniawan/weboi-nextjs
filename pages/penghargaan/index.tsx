@@ -4,7 +4,6 @@ import Breadcrumb from "../../components/Breadcrumb";
 import { fetchDataPrestasi } from "@/apis/fetchdata";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import Scroll from "@/components/Scroll";
@@ -15,6 +14,9 @@ const Penghargaan = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [loading, setLoading] = useState(true);
+  const [search, setSearch] = useState(""); // Pencarian default kosong
+  const [tahun, setTahun] = useState(""); // Tahun default semua tahun ("")
+  const [isFiltered, setIsFiltered] = useState(false); // Menandakan apakah filter aktif
 
   const breadcrumbData: Breadcrumb[] = [
     { title: "Home", url: "/" },
@@ -27,9 +29,10 @@ const Penghargaan = () => {
     const page = parseInt(router.query.page as string) || 1;
 
     setLoading(true);
-    fetchDataPrestasi(page.toString())
+
+    // Fetch tanpa filter ketika pertama kali load
+    fetchDataPrestasi(page.toString(), "", "")
       .then((res: any) => {
-        console.log("API Response:", res);
         if (isMounted) {
           if (res.success && Array.isArray(res.data)) {
             setData(res.data);
@@ -54,8 +57,63 @@ const Penghargaan = () => {
   const handlePageChange = (page: number) => {
     if (page >= 1 && page <= totalPages && page !== currentPage) {
       setCurrentPage(page);
-      router.push(`/prestasi?page=${page}`);
+      router.push(`/penghargaan?page=${page}`);
     }
+  };
+
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearch(e.target.value);
+  };
+
+  const handleTahunChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setTahun(e.target.value);
+  };
+
+  const handleFilterSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault(); // Mencegah perilaku default tombol
+
+    setIsFiltered(true); // Set filter sebagai aktif
+
+    // Fetch dengan filter
+    fetchDataPrestasi("1", search, tahun)
+      .then((res: any) => {
+        if (res.success && Array.isArray(res.data)) {
+          setData(res.data);
+          setCurrentPage(res.current_page);
+          setTotalPages(res.last_page);
+        } else {
+          setData([]);
+        }
+      })
+      .catch((error: any) => {
+        console.error("Error fetching filtered data:", error);
+      });
+
+    router.push(`/penghargaan?page=1`); // Tetap di tabel tanpa scroll ke atas
+  };
+
+  const handleResetFilter = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault(); // Mencegah perilaku default tombol
+    setSearch(""); // Reset pencarian
+    setTahun(""); // Reset tahun
+    setIsFiltered(false); // Set filter sebagai tidak aktif
+
+    // Fetch data tanpa filter
+    fetchDataPrestasi("1", "", "")
+      .then((res: any) => {
+        if (res.success && Array.isArray(res.data)) {
+          setData(res.data);
+          setCurrentPage(res.current_page);
+          setTotalPages(res.last_page);
+        } else {
+          setData([]);
+        }
+      })
+      .catch((error: any) => {
+        console.error("Error fetching data:", error);
+      });
+
+    router.push(`/penghargaan?page=1`); // Tetap di tabel tanpa scroll ke atas
   };
 
   return (
@@ -77,9 +135,49 @@ const Penghargaan = () => {
             </div>
 
             <div className="col-12 mt-30">
-              <div className="table-responsive">
+              <div className="row">
+                <div className="col-md-6">
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Cari Penghargaan..."
+                    value={search}
+                    onChange={handleSearchChange}
+                  />
+                </div>
+                <div className="col-md-4">
+                  <select
+                    className="form-control"
+                    value={tahun}
+                    onChange={handleTahunChange}
+                  >
+                    <option value="">Semua Tahun</option>
+                    <option value="2023">2023</option>
+                    <option value="2022">2022</option>
+                    <option value="2021">2021</option>
+                    {/* Tambahkan tahun lain sesuai kebutuhan */}
+                  </select>
+                </div>
+                <div className="col-md-2">
+                  <button
+                    type="button"
+                    className="btn btn-secondary ms-2 me-2"
+                    onClick={handleResetFilter}
+                  >
+                    Reset
+                  </button>
+                  <button
+                    type="button"
+                    className="btn btn-primary"
+                    onClick={handleFilterSubmit}
+                  >
+                    Filter
+                  </button>
+                </div>
+              </div>
+
+              <div className="table-responsive mt-4">
                 {loading ? (
-                  // Skeleton loader while data is loading
                   <SkeletonTheme baseColor="#e0e0e0" highlightColor="#f0f0f0">
                     <Skeleton height={50} count={5} />
                   </SkeletonTheme>
