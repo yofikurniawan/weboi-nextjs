@@ -74,7 +74,7 @@ const MediaSosial = () => {
                         Facebook
                         <span>
                           <i
-                            className="ph ph-facebook-logo"
+                            className="fab fa-facebook"
                             style={{ fontSize: 36 }}
                           />
                         </span>
@@ -95,7 +95,7 @@ const MediaSosial = () => {
                         Instagram
                         <span>
                           <i
-                            className="ph ph-instagram-logo"
+                            className="fab fa-instagram"
                             style={{ fontSize: 36 }}
                           />
                         </span>
@@ -116,7 +116,7 @@ const MediaSosial = () => {
                         Youtube
                         <span>
                           <i
-                            className="ph ph-youtube-logo"
+                            className="fab fa-youtube"
                             style={{ fontSize: 36 }}
                           />
                         </span>

@@ -76,7 +76,7 @@ const HeroSection = () => {
             <div
               className="blog-bg-style1"
               style={{
-                maxWidth: "1200px",
+                maxWidth: "65%",
                 paddingBottom: "70px",
                 paddingTop: "30px",
               }}

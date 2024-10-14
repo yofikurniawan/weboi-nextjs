@@ -750,7 +750,7 @@ const Home = () => {
             target="blank"
             title="facebook"
           >
-            <i className="ph ph-facebook-logo" />
+            <i className="fab fa-facebook-f" />
           </a>
           <a
             className="instagram"
@@ -758,7 +758,7 @@ const Home = () => {
             target="blank"
             title="instagram"
           >
-            <i className="ph ph-instagram-logo" />
+            <i className="fab fa-instagram" />
           </a>
           {/* reddit */}
         </div>
