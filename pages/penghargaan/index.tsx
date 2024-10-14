@@ -176,7 +176,7 @@ const Penghargaan = () => {
                     className="btn btn-primary"
                     onClick={handleFilterSubmit}
                     // preventDefault tidak diperlukan karena bukan dalam form
-                    
+
                   >
                     Filter
                   </button>

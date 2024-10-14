@@ -422,8 +422,7 @@ const Home = () => {
                             <Slider {...banner}>
                               <div className="">
                                 <a
-                                  href="#"
-                                  onClick={(e) => e.preventDefault()}
+                                  href="tel:112"
                                   className="xb-item--img img-fluid large-image"
                                 >
                                   <Image
@@ -436,8 +435,7 @@ const Home = () => {
                               </div>
                               <div className="">
                                 <a
-                                  onClick={(e) => e.preventDefault()}
-                                  href="#"
+                                  href="tel:112"
                                   className="xb-item--img img-fluid large-image"
                                 >
                                   <Image

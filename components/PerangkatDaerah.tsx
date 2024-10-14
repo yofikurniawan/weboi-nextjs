@@ -154,7 +154,7 @@ const PerangkatDaerah = () => {
                 }}
               >
                 <div className="xb-item--flag">
-                  <Image src="/img/more.svg" alt="" width={150} height={150} />
+                  <Image src="/images/more.svg" alt="" width={150} height={150} />
                 </div>
                 <h3 className="xb-item--title">
                   Selengkapnya
