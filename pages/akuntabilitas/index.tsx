@@ -244,7 +244,7 @@ const Akuntabilitas = () => {
                                   Unduh Dokumen
                                   <span>
                                     <Image
-                                      src="/img/icon/arrow-right.svg"
+                                      src="/images/icon/arrow-right.svg"
                                       alt=""
                                       width={20}
                                       height={20}
@@ -355,7 +355,7 @@ const Akuntabilitas = () => {
                                       Unduh Dokumen
                                       <span>
                                         <Image
-                                          src="/img/icon/arrow-right.svg"
+                                          src="/images/icon/arrow-right.svg"
                                           alt=""
                                           width={20}
                                           height={20}

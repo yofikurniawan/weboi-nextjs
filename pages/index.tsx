@@ -95,6 +95,7 @@ const Home = () => {
         document.body.removeChild(script);
       };
     };
+    
     // Memuat file-file secara paralel
     // const removeScript1 = loadScript("/js/tambahan.js", () => {
     //   console.log("Library1.js loaded successfully!");

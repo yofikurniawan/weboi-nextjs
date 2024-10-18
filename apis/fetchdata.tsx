@@ -50,12 +50,16 @@ export async function fetchDataDetailBerita(slug: string) {
   }
 }
 
-export async function fetchDataBeritaTerbaru() {
+export async function fetchDataBeritaTerbaru(width?: number, height?: number) {
   try {
     const res = await axios.get(`${baseUri}/berita-terbaru`, {
       headers: {
         "Content-Type": "application/json",
         "X-API-Key": apiKey,
+      },
+      params: {
+        width, // Mengirimkan parameter width jika ada
+        height, // Mengirimkan parameter height jika ada
       },
     });
     return res.data;
