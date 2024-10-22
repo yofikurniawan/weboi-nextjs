@@ -799,8 +799,6 @@ const Home = () => {
             </Modal.Title>
           </Modal.Header>
           <Modal.Body style={{ maxHeight: "400px", overflowY: "auto" }}>
-            {" "}
-            {/* Batasi tinggi modal dan tambahkan scroll */}
             <div className="text-center">
               <Image
                 src={`https://oganilirkab.go.id/storage/images/thumbnail/${item.thumbnail}`}
@@ -812,7 +810,6 @@ const Home = () => {
               />
             </div>
             <div dangerouslySetInnerHTML={{ __html: item.content }}></div>{" "}
-            {/* Konten dengan HTML */}
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={handleClose}>
