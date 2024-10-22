@@ -8,6 +8,7 @@ const nextConfig = {
       "aptika.oganilirkab.go.id",
       "backend-weboi.superdev.id",
       "dev-backend.oganilirkab.go.id",
+      "oganilirkab.go.id",
     ],
   },
 };

@@ -17,10 +17,12 @@ import Loader from "@/components/Loader";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import Scroll from "@/components/Scroll";
+import { Modal, Button } from "react-bootstrap";
 
 import {
   fetchDataBeritaTerbaru,
   fetchDataAplikasiLayanan,
+  fetchPengumumanHome,
 } from "@/apis/fetchdata";
 
 const truncateHTML = (content: string, maxLength: number) => {
@@ -39,11 +41,32 @@ const banner = {
 };
 
 const Home = () => {
+  const [showModal, setShowModal] = useState(false);
+  const [pengumumanData, setPengumumanData] = useState<any[]>([]);
+
   const [activeIndex, setActiveIndex] = useState(0); // Menyimpan index gambar yang aktif
   const handleTabClick = (index: React.SetStateAction<number>) => {
     setActiveIndex(index); // Update gambar yang aktif saat tab diklik
   };
   // Fungsi untuk mengubah gambar setiap 5 detik
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetchPengumumanHome();
+        if (response && response.data && response.data.length > 0) {
+          setPengumumanData(response.data); // Simpan data array
+          setShowModal(true); // Tampilkan modal jika ada data
+        }
+      } catch (error) {
+        console.error("Error fetching pengumuman:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const handleClose = () => setShowModal(false);
 
   const [terbaru, setDataTerbaru] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
@@ -80,7 +103,6 @@ const Home = () => {
     return () => clearInterval(interval); // Membersihkan interval saat komponen unmount
   }, [terbaru.length]);
 
-
   useEffect(() => {
     // Fungsi untuk menambahkan script ke dalam body
     const loadScript = (src: string, onLoadCallback?: () => void) => {
@@ -95,7 +117,7 @@ const Home = () => {
         document.body.removeChild(script);
       };
     };
-    
+
     // Memuat file-file secara paralel
     // const removeScript1 = loadScript("/js/tambahan.js", () => {
     //   console.log("Library1.js loaded successfully!");
@@ -763,6 +785,42 @@ const Home = () => {
         </div>
         {/* End Share Button */}
       </div>
+
+      {pengumumanData.map((item: any, index: number) => (
+        <Modal
+          key={index}
+          show={showModal}
+          onHide={handleClose}
+          className="modal-centered"
+        >
+          <Modal.Header closeButton>
+            <Modal.Title style={{ color: "white", textAlign: "center" }}>
+              {item.title} {/* Tampilkan title dari setiap item */}
+            </Modal.Title>
+          </Modal.Header>
+          <Modal.Body style={{ maxHeight: "400px", overflowY: "auto" }}>
+            {" "}
+            {/* Batasi tinggi modal dan tambahkan scroll */}
+            <div className="text-center">
+              <Image
+                src={`https://oganilirkab.go.id/storage/images/thumbnail/${item.thumbnail}`}
+                alt={item.title}
+                style={{ width: "auto", height: "300px" }}
+                width={0}
+                height={0}
+                sizes="100vw"
+              />
+            </div>
+            <div dangerouslySetInnerHTML={{ __html: item.content }}></div>{" "}
+            {/* Konten dengan HTML */}
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>
+              Tutup
+            </Button>
+          </Modal.Footer>
+        </Modal>
+      ))}
     </>
   );
 }

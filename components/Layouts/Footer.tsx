@@ -1,12 +1,13 @@
 // Desc: Footer component
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { fetchDataIdentity } from "@/apis/fetchdata";
+import { fetchDataIdentity, fetchVisitor } from "@/apis/fetchdata";
 import Link from "next/link";
 
 const Footer = () => {
 
   const [identity, setIdentity] = useState<any>({});
+  const [visitor, setVisitor] = useState<any>({});
   const [loading, setLoading] = useState<boolean>(true);
   const [errorMessage, setErrorMessage] = useState<string>("");
 
@@ -30,6 +31,28 @@ const Footer = () => {
 
     fetchData();
   }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true); // Set loading to true saat fetching data
+      try {
+        const res = await fetchVisitor();
+        if (res && res.success && res.data) {
+          setVisitor(res.data); // Mengambil data dari objek data
+          setErrorMessage(""); // Reset error message jika data ditemukan
+        } else {
+          setErrorMessage("Data visitor tidak ditemukan.");
+        }
+      } catch (error) {
+        setErrorMessage("Gagal memuat data visitor.");
+      } finally {
+        setLoading(false); // Set loading ke false setelah fetching
+      }
+    };
+
+    fetchData();
+  }
+  , []);
 
   return (
     <footer className="site-footer gray-bg footer__copyright mt-50 pt-90">
@@ -266,7 +289,7 @@ const Footer = () => {
                           style={{ fontSize: 12 }}
                           data-asw-orgfontsize={12}
                         >
-                          657
+                          {visitor.visitors_today}
                         </span>
                       </td>
                     </tr>
@@ -289,7 +312,7 @@ const Footer = () => {
                           style={{ fontSize: 12 }}
                           data-asw-orgfontsize={12}
                         >
-                          1.657
+                          {visitor.visitors_this_week}
                         </span>
                       </td>
                     </tr>
@@ -312,7 +335,7 @@ const Footer = () => {
                           style={{ fontSize: 12 }}
                           data-asw-orgfontsize={12}
                         >
-                          3.657
+                          {visitor.visitors_this_month}
                         </span>
                       </td>
                     </tr>
@@ -335,7 +358,7 @@ const Footer = () => {
                           style={{ fontSize: 12 }}
                           data-asw-orgfontsize={12}
                         >
-                          23.657
+                          {visitor.visitors_this_year}
                         </span>
                       </td>
                     </tr>

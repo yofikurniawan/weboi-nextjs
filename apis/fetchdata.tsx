@@ -461,3 +461,42 @@ export async function fetchDataPrestasi(
     };
   }
 }
+
+// fetch visitor
+export async function fetchVisitor() {
+  try {
+    const res = await axios.get(baseUri + "/visitor", {
+      headers: {
+        "Content-Type": "application/json",
+        "X-API-Key": apiKey,
+      },
+    });
+    const data = await res.data;
+    return data;
+  } catch (error) {
+    return {
+      status: "error",
+      message: error,
+    };
+  }
+}
+
+
+// pengumuman home
+export async function fetchPengumumanHome() {
+  try {
+    const res = await axios.get(baseUri + "/pengumuman-home", {
+      headers: {
+        "Content-Type": "application/json",
+        "X-API-Key": apiKey,
+      },
+    });
+    const data = await res.data;
+    return data;
+  } catch (error) {
+    return {
+      status: "error",
+      message: error,
+    };
+  }
+}

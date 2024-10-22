@@ -102,3 +102,32 @@
       width: 100%;
   }
 }
+
+.modal-centered {
+  position: fixed;
+  top: 65%; /* Default untuk desktop */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1050;
+}
+
+/* Media query untuk tampilan mobile */
+@media (max-width: 768px) {
+  .modal-centered {
+    top: 55%; /* Ubah nilai top untuk mobile */
+  }
+}
+
+.modal-header {
+  background-color: #0a149a;
+  border: none;
+  align-items: start;
+}
+
+.modal-content {
+  padding: 0;
+}
+
+.modal-centered .btn-close {
+  filter: invert(3);;
+}
