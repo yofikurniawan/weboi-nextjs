@@ -14,7 +14,7 @@ const useBerita = () => {
       try {
         const db = await initDB();
         const cachedData = await getDataFromIndexedDB(); // Mengambil semua data dari IndexedDB
-        console.log("Cached Data:", cachedData); // Cek data dari IndexedDB
+        // console.log("Cached Data:", cachedData); // Cek data dari IndexedDB
 
         // Set data dari cache jika ada
         if (cachedData.length > 0) {
@@ -22,7 +22,7 @@ const useBerita = () => {
         }
 
         const res = await fetchDataBeritaTerbaru(); // Ambil data terbaru dari API
-        console.log("Response from API:", res); // Cek respon dari API
+        // console.log("Response from API:", res); // Cek respon dari API
 
         // Jika API berhasil dan data valid
         if (res.data && Array.isArray(res.data) && res.data.length > 0) {

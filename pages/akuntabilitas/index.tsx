@@ -32,7 +32,7 @@ const Akuntabilitas = () => {
     fetchDataCategoryAkuntabilitas()
       .then((res: any) => {
         setCategory(res.data);
-        console.log(res);
+        // console.log(res);
       })
       .catch((error: any) => {
         console.error(error);

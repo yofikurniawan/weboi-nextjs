@@ -40,10 +40,10 @@ const DetailPages = ({}: any) => {
     fetchDataBeritaPopuler()
       .then((res: any) => {
         setDataPopuler(res.data);
-        console.log(res);
+        // console.log(res);
       })
       .catch((error: any) => {
-        console.error(error);
+        // console.error(error);
       });
   }, []);
 

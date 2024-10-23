@@ -28,7 +28,7 @@ export const getDataFromIndexedDB = async () => {
   const tx = db.transaction(STORE_NAME, "readonly");
   const store = tx.objectStore(STORE_NAME);
   const data = await store.getAll(); // Ambil semua data
-  console.log("Data from IndexedDB:", data); // Log data yang diambil
+  // console.log("Data from IndexedDB:", data); // Log data yang diambil
   return data; // Kembalikan data
 };
 

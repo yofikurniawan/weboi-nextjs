@@ -321,8 +321,10 @@ const Header = () => {
                     <Image
                       src="/images/logo/Logo_pemkab_oi.png"
                       alt=""
-                      width={250}
-                      height={150}
+                      width={250} // Tetap gunakan lebar sebagai referensi
+                      height={150} // Tetap gunakan tinggi sebagai referensi
+                      style={{ width: "100%", height: "auto" }} // Lebar 100%, tinggi otomatis
+                      priority
                     />
                   </Link>
                 </div>
@@ -340,8 +342,7 @@ const Header = () => {
                     </div>
                   </div>
                 </div>
-                <ul className="header__action ul_li">
-                </ul>
+                <ul className="header__action ul_li"></ul>
               </div>
             </div>
           </div>
@@ -370,8 +371,10 @@ const Header = () => {
                     <Image
                       src="/images/logo/Logo_pemkab_oi.png"
                       alt=""
-                      width={250}
-                      height={30}
+                      width={250} // Tetap gunakan lebar sebagai referensi
+                      height={150} // Tetap gunakan tinggi sebagai referensi
+                      style={{ width: "100%", height: "auto" }} // Lebar 100%, tinggi otomatis
+                      priority
                     />
                   </Link>
                 </div>

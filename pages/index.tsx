@@ -99,7 +99,7 @@ const Home = () => {
     fetchDataAplikasiLayanan()
       .then((res: any) => {
         setLayanan(res.data);
-        console.log(res);
+        // console.log(res);
       })
       .catch((error: any) => {
         console.error(error);
@@ -140,7 +140,7 @@ const Home = () => {
     const removeScript2 = loadScript(
       "https://widget.kominfo.go.id/gpr-widget-kominfo.min.js",
       () => {
-        console.log("gpr-widget-kominfo.min.js loaded successfully!");
+        // console.log("gpr-widget-kominfo.min.js loaded successfully!");
       }
     );
 
@@ -814,7 +814,7 @@ const Home = () => {
           <Modal.Body style={{ maxHeight: "400px", overflowY: "auto" }}>
             <div className="text-center">
               <Image
-                src={`https://oganilirkab.go.id/storage/images/thumbnail/${item.thumbnail}`}
+                src={item.thumbnail}
                 alt={item.title}
                 style={{ width: "auto", height: "300px" }}
                 width={0}

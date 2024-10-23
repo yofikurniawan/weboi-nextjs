@@ -22,7 +22,7 @@ const PerangkatDaerah = () => {
       // Cek apakah data tersedia di cache IndexedDB
       const cachedData = await getDataFromIndexedDB(filterValue);
       if (cachedData && cachedData.data) {
-        console.log("Data diambil dari IndexedDB");
+        // console.log("Data diambil dari IndexedDB");
         setJenisAplikasi(cachedData.data);
         setLoading(false);
         return;

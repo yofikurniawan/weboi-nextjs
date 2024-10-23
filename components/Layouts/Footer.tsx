@@ -179,7 +179,7 @@ const Footer = () => {
               <h3 className="widget-title">Layanan Publik</h3>
               <ul className="footer__links list-unstyled">
                 <li>
-                  <a href="#!">
+                  <a href="https://www.lapor.go.id/">
                     <span>
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -198,7 +198,7 @@ const Footer = () => {
                   </a>
                 </li>
                 <li>
-                  <a href="#!">
+                  <a href="https://satudata.go.id/">
                     <span>
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -217,7 +217,7 @@ const Footer = () => {
                   </a>
                 </li>
                 <li>
-                  <a href="#!">
+                  <a href="https://jdihn.go.id/">
                     <span>
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -236,7 +236,7 @@ const Footer = () => {
                   </a>
                 </li>
                 <li>
-                  <a href="#!">
+                  <a href="https://ppid.kemendagri.go.id/">
                     <span>
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
