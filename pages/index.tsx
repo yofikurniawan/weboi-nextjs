@@ -71,17 +71,28 @@ const Home = () => {
   const [terbaru, setDataTerbaru] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [layanan, setLayanan] = useState<any[]>([]);
+  const [error, setError] = useState<string | null>(null); // State untuk menyimpan pesan error
 
   useEffect(() => {
-    fetchDataBeritaTerbaru()
-      .then((res: any) => {
-        setDataTerbaru(res.data);
-        setLoading(false);
-      })
-      .catch((error: any) => {
-        console.error(error);
-        setLoading(false);
-      });
+    const fetchData = async () => {
+      try {
+        const res = await fetchDataBeritaTerbaru(); // Panggil API
+        if (res && res.data) {
+          // Tambahkan pengecekan untuk memastikan res.data tidak undefined
+          setDataTerbaru(res.data); // Set data terbaru jika berhasil
+          setError(null); // Reset error jika berhasil
+        } else {
+          throw new Error("Data tidak ditemukan");
+        }
+      } catch (err: any) {
+        console.error(err); // Log error ke konsol
+        setError("Gagal memuat data, silakan coba lagi nanti."); // Set pesan error
+      } finally {
+        setLoading(false); // Pastikan loading berhenti
+      }
+    };
+
+    fetchData();
   }, []);
 
   useEffect(() => {
@@ -96,12 +107,14 @@ const Home = () => {
   }, []);
 
   useEffect(() => {
+    if (terbaru.length === 0 || error) return; // Jangan jalankan interval jika ada error atau data kosong
+
     const interval = setInterval(() => {
       setActiveIndex((prevIndex) => (prevIndex + 1) % terbaru.length);
     }, 5000); // Pindah gambar setiap 5 detik
 
     return () => clearInterval(interval); // Membersihkan interval saat komponen unmount
-  }, [terbaru.length]);
+  }, [terbaru.length, error]); // Jalankan efek jika panjang `terbaru` berubah atau ada error
 
   useEffect(() => {
     // Fungsi untuk menambahkan script ke dalam body
