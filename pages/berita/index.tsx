@@ -78,13 +78,12 @@ const Berita = () => {
       fetchBeritaWithCache();
     }, [page, router.query.page]);
 
-
-  const handlePageChange = (page: number) => {
-    if (page >= 1 && page <= totalPages && page !== currentPage) {
-      setCurrentPage(page);
-      router.push(`/berita?page=${page}`);
-    }
-  };
+    const handlePageChange = (page: number) => {
+      if (page >= 1 && page <= totalPages && page !== currentPage) {
+        setCurrentPage(page);
+        router.push(`/berita?page=${page}`, undefined, { scroll: false }); // Prevent scroll to top
+      }
+    };
 
   return (
     <>
