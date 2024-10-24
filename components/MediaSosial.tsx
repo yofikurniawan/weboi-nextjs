@@ -8,21 +8,19 @@ declare global {
 
 const MediaSosial = () => {
 
-  // useEffect(() => {
-  //   // This ensures the Facebook SDK is loaded for the FB Page plugin to work
-  //   if (window.FB) {
-  //     window.FB.XFBML.parse();
-  //   } else {
-  //     const script = document.createElement("script");
-  //     script.src =
-  //       "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v11.0&appId=358080444571252&autoLogAppEvents=1";
-  //     script.async = true;
-  //     script.defer = true;
-  //     script.crossOrigin = "anonymous";
-  //     document.body.appendChild(script);
-  //   }
-  // }, []);
-
+  useEffect(() => {
+    if (window.FB) {
+      window.FB.XFBML.parse();
+    } else {
+      const script = document.createElement("script");
+      script.src =
+        "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v11.0&appId=358080444571252&autoLogAppEvents=1";
+      script.async = true;
+      script.defer = true;
+      script.crossOrigin = "anonymous";
+      document.body.appendChild(script);
+    }
+  }, []);
 
   return (
     <div>
@@ -142,7 +140,7 @@ const MediaSosial = () => {
                         style={{
                           height: "700px", // Adjust the height to prevent scrolling
                           width: "150%",
-                          overflow: "hidden", // Prevent scrolling
+                          overflow: "hidden", 
                         }}
                       >
                         <div

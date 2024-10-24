@@ -59,6 +59,7 @@ const Breadcrumb = ({ breadcrumbData }: BreadcrumbProps) => {
               alt=""
               width={100}
               height={100}
+              priority
             />
           </div>
         </div>
@@ -69,6 +70,7 @@ const Breadcrumb = ({ breadcrumbData }: BreadcrumbProps) => {
               alt=""
               width={100}
               height={100}
+              priority
             />
           </div>
         </div>

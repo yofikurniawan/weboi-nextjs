@@ -2,7 +2,10 @@ import axios from "axios";
 import { BaseUrl } from "./apiServer";
 
 const baseUri = BaseUrl();
-const apiKey = "webOI!#2024";
+
+const apiKey = process.env.NEXT_PUBLIC_API_KEY;
+console.log("API_KEY", apiKey);
+
 
 export async function fetchDataBerita(page: string = "1") {
   try {

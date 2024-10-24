@@ -7,6 +7,8 @@ import Script from "next/script";
 
 import "../styles/globals.css";
 import DefaultLayout from "../components/Layouts/DefaultLayout";
+// import "bootstrap/dist/js/bootstrap.bundle.min.js";
+
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode;

@@ -56,7 +56,7 @@ const Video = () => {
   const handlePageChange = (page: number) => {
     if (page >= 1 && page <= totalPages && page !== currentPage) {
       setCurrentPage(page);
-      router.push(`/gallery?page=${page}`); // Update URL with query string
+      router.push(`/video?page=${page}`, undefined, { scroll: false }); // Prevent scroll to top
     }
   };
 
@@ -100,7 +100,7 @@ const Video = () => {
                             src={`https://img.youtube.com/vi/${item.link}/hqdefault.jpg`}
                             alt={item.title}
                             width={500}
-                            height={515}
+                            height={715}
                           />
                         </div>
                         <div className="xb-item--holder pos-rel">
@@ -109,7 +109,7 @@ const Video = () => {
                           </h6>
                           <p className="xb-item--content">{item.description}</p>
                           <a className="xb-item--link" type="button" href="#">
-                            <i className="ph ph-youtube-logo text-white" />
+                            <i className="fab fa-youtube text-white" />
                           </a>
                         </div>
                       </div>
@@ -137,7 +137,7 @@ const Video = () => {
                   {[...Array(totalPages)].map((_, index) => (
                     <li key={index + 1}>
                       <a
-                        href="#"
+                        href="javascript:void(0)"
                         onClick={(e) => {
                           e.preventDefault();
                           handlePageChange(index + 1);
@@ -152,7 +152,7 @@ const Video = () => {
                   ))}
                   <li>
                     <a
-                      href="#"
+                      href="javascript:void(0)"
                       onClick={(e) => {
                         e.preventDefault();
                         handlePageChange(currentPage + 1);

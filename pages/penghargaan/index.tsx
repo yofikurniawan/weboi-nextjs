@@ -57,7 +57,7 @@ const Penghargaan = () => {
   const handlePageChange = (page: number) => {
     if (page >= 1 && page <= totalPages && page !== currentPage) {
       setCurrentPage(page);
-      router.push(`/penghargaan?page=${page}`);
+      router.push(`/penghargaan?page=${page}`, undefined, { shallow: true });
     }
   };
 
@@ -89,7 +89,7 @@ const Penghargaan = () => {
         console.error("Error fetching filtered data:", error);
       });
 
-    router.push(`/penghargaan?page=1`); // Tetap di tabel tanpa scroll ke atas
+    router.push(`/penghargaan?page=1`, undefined, { shallow: true }); // Tetap di tabel tanpa scroll ke atas
   };
 
   const handleResetFilter = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -113,7 +113,7 @@ const Penghargaan = () => {
         console.error("Error fetching data:", error);
       });
 
-    router.push(`/penghargaan?page=1`); // Tetap di tabel tanpa scroll ke atas
+    router.push(`/penghargaan?page=1`, undefined, { shallow: true }); // Tetap di tabel tanpa scroll ke atas
   };
 
   return (
@@ -176,7 +176,6 @@ const Penghargaan = () => {
                     className="btn btn-primary"
                     onClick={handleFilterSubmit}
                     // preventDefault tidak diperlukan karena bukan dalam form
-
                   >
                     Filter
                   </button>
@@ -227,7 +226,7 @@ const Penghargaan = () => {
                     </tbody>
                   </table>
                 ) : (
-                  <p>Tidak ada data penghargaan yang tersedia.</p>
+                  <p className="text-danger text-center">Tidak ada data penghargaan yang tersedia.</p>
                 )}
               </div>
 
