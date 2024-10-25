@@ -102,19 +102,19 @@ $(document).ready(function () {
 });
 
 	// xbo counter start
-	if ($(".xbo").length) {
-		$('.xbo').appear();
-		$(document.body).on('appear', '.xbo', function (e) {
-			var odo = $(".xbo");
-			odo.each(function () {
-				var countNumber = $(this).attr("data-count");
-				$(this).html(countNumber);
-			});
-			window.xboOptions = {
-				format: 'd',
-			};
-		});
-	}
+	// if ($(".xbo").length) {
+	// 	$('.xbo').appear();
+	// 	$(document.body).on('appear', '.xbo', function (e) {
+	// 		var odo = $(".xbo");
+	// 		odo.each(function () {
+	// 			var countNumber = $(this).attr("data-count");
+	// 			$(this).html(countNumber);
+	// 		});
+	// 		window.xboOptions = {
+	// 			format: 'd',
+	// 		};
+	// 	});
+	// }
 	// xbo counter end
 
 	// isotop

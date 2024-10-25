@@ -131,3 +131,29 @@
 .modal-centered .btn-close {
   filter: invert(3);;
 }
+
+.swiper-wrapper {
+  margin: 30px 50px; /* Atur margin pada swiper-wrapper */
+  height: 100%; /* Pastikan swiper-wrapper menggunakan tinggi penuh dari container */
+  display: flex;
+  align-items: center; /* Menempatkan item dalam wrapper di tengah secara vertikal */
+}
+
+
+.img-dukungan {
+  height: 100px;
+  padding: 10px 5px;
+  object-fit: contain; 
+  transition: transform 0.3s ease, border 0.3s ease;
+}
+
+.swiper-slide:hover .img-dukungan {
+  height: 100px;
+  padding: 20px 10px;
+  transform: scale(1.1);
+  -webkit-box-shadow: 0px 0px 10px 3px rgba(216, 216, 216, 0.500);
+  -moz-box-shadow: 0px 0px 10px 3px rgba(216, 216, 216, 0.500);
+  box-shadow: 0px 0px 10px 3px rgba(216, 216, 216, 0.500);
+  border-radius: 10px; /* opsional, untuk sudut yang membulat */
+}
+

@@ -175,6 +175,26 @@ const Home = () => {
       <div>
         <Hero />
 
+        {/* Mppd */}
+        <section className="cta cta-mpp bg-white mt-5">
+          <div className="container">
+            <Link
+              href="/mppd"
+              className="xb-brand2__mt slider"
+              data-asw-orgfontsize={16}
+              style={{ fontSize: 16 }}
+            >
+              <div
+                className="xb-cta2"
+                style={{ backgroundImage: "url('/images/mppd.png')" }}
+              >
+                <div className="sec-title sec-title--white sec-title--travel mt-20"></div>
+              </div>
+            </Link>
+          </div>
+        </section>
+        {/* Mppd */}
+
         {/* blog start */}
         <section className="blog pos-rel pt-55 pb-30">
           <div className="container">
@@ -466,7 +486,7 @@ const Home = () => {
                                     src="https://dev-backend.oganilirkab.go.id/weboi/images/banner/layanan.png"
                                     alt=""
                                     width={2000}
-                                    height={100}
+                                    height={500}
                                   />
                                 </a>
                               </div>
@@ -479,7 +499,7 @@ const Home = () => {
                                     src="https://dev-backend.oganilirkab.go.id/weboi/images/banner/layanan.png"
                                     alt=""
                                     width={2000}
-                                    height={100}
+                                    height={500}
                                   />
                                 </a>
                               </div>
