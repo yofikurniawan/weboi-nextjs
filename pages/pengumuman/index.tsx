@@ -28,7 +28,7 @@ const Pengumuman = () => {
   useEffect(() => {
     let isMounted = true;
 
-    // Ambil halaman dari query string jika ada
+    // Get page from query string if available
     const page = parseInt(router.query.page as string) || 1;
 
     setLoading(true); // Set loading to true before fetching data
@@ -54,8 +54,81 @@ const Pengumuman = () => {
   const handlePageChange = (page: number) => {
     if (page >= 1 && page <= totalPages && page !== currentPage) {
       setCurrentPage(page);
-      router.push(`/pengumuman?page=${page}`); // Update URL with query string
+      router.push(`/pengumuman?page=${page}`, undefined, { scroll: false });
     }
+  };
+  
+
+  const renderPagination = () => {
+    const pagination = [];
+    const maxVisiblePages = 5;
+    const startPage = Math.max(2, currentPage - 2);
+    const endPage = Math.min(totalPages - 1, currentPage + 2);
+
+    pagination.push(
+      <li key="first">
+        <a
+          href="#"
+          onClick={(e) => {
+            e.preventDefault();
+            handlePageChange(1);
+          }}
+          className={currentPage === 1 ? "disabled" : ""}
+        >
+          1
+        </a>
+      </li>
+    );
+
+    if (startPage > 2) {
+      pagination.push(
+        <li key="start-ellipsis">
+          <span>...</span>
+        </li>
+      );
+    }
+
+    for (let i = startPage; i <= endPage; i++) {
+      pagination.push(
+        <li key={i}>
+          <a
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              handlePageChange(i);
+            }}
+            className={currentPage === i ? "current_page" : ""}
+          >
+            {i}
+          </a>
+        </li>
+      );
+    }
+
+    if (endPage < totalPages - 1) {
+      pagination.push(
+        <li key="end-ellipsis">
+          <span>...</span>
+        </li>
+      );
+    }
+
+    pagination.push(
+      <li key="last">
+        <a
+          href="#"
+          onClick={(e) => {
+            e.preventDefault();
+            handlePageChange(totalPages);
+          }}
+          className={currentPage === totalPages ? "disabled" : ""}
+        >
+          {totalPages}
+        </a>
+      </li>
+    );
+
+    return pagination;
   };
 
   return (
@@ -76,18 +149,12 @@ const Pengumuman = () => {
           </div>
           <div className="row">
             {loading ? (
-              // Tampilkan skeleton loader sesuai jumlah data yang diambil
-              [...Array(data.length || 2)].map(
-                (
-                  _,
-                  index // Tampilkan skeleton sesuai jumlah data atau 2 jika tidak ada
-                ) => (
-                  <div className="col-lg-4 col-md-6 mt-30" key={index}>
-                    <Skeleton height={200} />
-                    <Skeleton count={2} />
-                  </div>
-                )
-              )
+              [...Array(data.length || 2)].map((_, index) => (
+                <div className="col-lg-4 col-md-6 mt-30" key={index}>
+                  <Skeleton height={200} />
+                  <Skeleton count={2} />
+                </div>
+              ))
             ) : data.length > 0 ? (
               data.map((item: any) => (
                 <div className="col-lg-4 col-md-6 mt-30" key={item.id}>
@@ -96,7 +163,10 @@ const Pengumuman = () => {
                       <div className="xb-item--img">
                         <a href={`/pengumuman/${item.slug}`}>
                           <Image
-                            src={item.thumbnail || "/images/aplikasi_icon/oganilirbangkit.png"}
+                            src={
+                              item.thumbnail ||
+                              "/images/aplikasi_icon/oganilirbangkit.png"
+                            }
                             alt={item.title}
                             width={1250}
                             height={1000}
@@ -145,22 +215,7 @@ const Pengumuman = () => {
                     <i className="far fa-long-arrow-left" />
                   </a>
                 </li>
-                {[...Array(totalPages)].map((_, index) => (
-                  <li key={index + 1}>
-                    <a
-                      href="#"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        handlePageChange(index + 1);
-                      }}
-                      className={
-                        currentPage === index + 1 ? "current_page" : ""
-                      }
-                    >
-                      {index + 1}
-                    </a>
-                  </li>
-                ))}
+                {renderPagination()}
                 <li>
                   <a
                     href="#"

@@ -55,8 +55,80 @@ const Download = () => {
   const handlePageChange = (page: number) => {
     if (page >= 1 && page <= totalPages && page !== currentPage) {
       setCurrentPage(page);
-      router.push(`/download?page=${page}`); // Update URL dengan query string
+      router.push(`/download?page=${page}`, undefined, { scroll: false });
     }
+  };
+
+    const renderPagination = () => {
+    const pagination = [];
+    const maxVisiblePages = 5;
+    const startPage = Math.max(2, currentPage - 2);
+    const endPage = Math.min(totalPages - 1, currentPage + 2);
+
+    pagination.push(
+      <li key="first">
+        <a
+          href="#"
+          onClick={(e) => {
+            e.preventDefault();
+            handlePageChange(1);
+          }}
+          className={currentPage === 1 ? "disabled" : ""}
+        >
+          1
+        </a>
+      </li>
+    );
+
+    if (startPage > 2) {
+      pagination.push(
+        <li key="start-ellipsis">
+          <span>...</span>
+        </li>
+      );
+    }
+
+    for (let i = startPage; i <= endPage; i++) {
+      pagination.push(
+        <li key={i}>
+          <a
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              handlePageChange(i);
+            }}
+            className={currentPage === i ? "current_page" : ""}
+          >
+            {i}
+          </a>
+        </li>
+      );
+    }
+
+    if (endPage < totalPages - 1) {
+      pagination.push(
+        <li key="end-ellipsis">
+          <span>...</span>
+        </li>
+      );
+    }
+
+    pagination.push(
+      <li key="last">
+        <a
+          href="#"
+          onClick={(e) => {
+            e.preventDefault();
+            handlePageChange(totalPages);
+          }}
+          className={currentPage === totalPages ? "disabled" : ""}
+        >
+          {totalPages}
+        </a>
+      </li>
+    );
+
+    return pagination;
   };
 
   return (
@@ -138,22 +210,7 @@ const Download = () => {
                           <i className="far fa-long-arrow-left" />
                         </a>
                       </li>
-                      {[...Array(totalPages)].map((_, index) => (
-                        <li key={index + 1}>
-                          <a
-                            href="#"
-                            onClick={(e) => {
-                              e.preventDefault();
-                              handlePageChange(index + 1);
-                            }}
-                            className={
-                              currentPage === index + 1 ? "current_page" : ""
-                            }
-                          >
-                            {index + 1}
-                          </a>
-                        </li>
-                      ))}
+                      {renderPagination()}
                       <li>
                         <a
                           href="#"
