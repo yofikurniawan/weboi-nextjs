@@ -18,7 +18,6 @@ import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import Scroll from "@/components/Scroll";
 import { Modal, Button } from "react-bootstrap";
-// import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
 import {
   fetchDataBeritaTerbaru,
