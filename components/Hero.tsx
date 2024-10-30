@@ -6,6 +6,7 @@ import {
   saveDataToIndexedDB,
   getDataFromIndexedDB,
 } from "@/utils/indexedDB"; // Mengimpor fungsi dari indexedDB
+import Link from "next/link";
 
 const HeroSection = () => {
   const [terbaru, setTerbaru] = useState<any[]>([]);
@@ -83,15 +84,15 @@ const HeroSection = () => {
             >
               <span className="category">Berita Terbaru</span>
               <h3>
-                <a
+                <Link
                   className="hover-line"
-                  href="#"
+                  href={`/berita/${terbaru[activeIndex]?.slug || "#"}`}
                   style={{
                     fontSize: "30px", // Ganti ukuran teks
                   }} // Ganti warna teks
                 >
                   {terbaru[activeIndex]?.title || "Default Title"}
-                </a>
+                </Link>
               </h3>
               <div className="blog-meta mt-15">
                 <span>

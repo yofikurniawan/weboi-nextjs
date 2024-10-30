@@ -230,6 +230,7 @@ const Pengumuman = () => {
                 </li>
               </ul>
             </div>
+            
           </div>
         </div>
       </section>

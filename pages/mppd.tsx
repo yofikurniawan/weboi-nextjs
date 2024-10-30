@@ -33,79 +33,24 @@ const Mppd = () => {
 
   return (
     <>
-      {/* Banner start */}
       <section className="cta cta-mpp-dua">
         <div className="container">
           <div className="xb-brand2__mt slider" style={{ marginTop: "60px" }}>
-            <div
-              className="xb-cta2"
-              style={{ backgroundImage: "url(/images/mppd.png)" }}
+            <a
+              href="https://play.google.com/store/apps/details?id=com.mppdigital.app&hl=id"
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              <div className="sec-title sec-title--white sec-title--travel mt-20"></div>
-            </div>
+              <div
+                className="xb-cta2"
+                style={{ backgroundImage: "url(/images/mpp/mpp-2.png)" }}
+              >
+                <div className="sec-title sec-title--white sec-title--travel mt-20"></div>
+              </div>
+            </a>
           </div>
         </div>
       </section>
-      {/* Banner end */}
-
-      {/* team single start */}
-      <section className="team-signle">
-        <div className="container">
-          <div className="row mb-80">
-            <div className="col-lg-3 col-md-6 mt-30">
-              <div className="team-skills">
-                <div className="xb-item--inner mmpds">
-                  <h2 className="xb-item--number">
-                    <span className="xbo" data-count={90}>
-                      00
-                    </span>
-                  </h2>
-                  <h4 className="xb-item--title">Jumlah Instansi</h4>
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-3 col-md-6 mt-30">
-              <div className="team-skills style-2">
-                <div className="xb-item--inner mmpds">
-                  <h2 className="xb-item--number">
-                    <span className="xbo" data-count={80}>
-                      00
-                    </span>
-                  </h2>
-                  <h4 className="xb-item--title">Jumlah Layanan</h4>
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-3 col-md-6 mt-30">
-              <div className="team-skills style-3">
-                <div className="xb-item--inner mmpds">
-                  <h2 className="xb-item--number">
-                    <span className="xbo" data-count={89}>
-                      00
-                    </span>
-                  </h2>
-                  <h4 className="xb-item--title">Jumlah Loket</h4>
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-3 col-md-6 mt-30">
-              <div className="team-skills style-4">
-                <div className="xb-item--inner mmpds">
-                  <h2 className="xb-item--number">
-                    <span className="xbo" data-count={70}>
-                      00
-                    </span>
-                  </h2>
-                  <h4 className="xb-item--title">Jumlah Antrian</h4>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      {/* team single end */}
-
-      {/* faq start */}
       <section className="faq pt-120 pb-110">
         <div className="container">
           <div className="row">
@@ -194,11 +139,12 @@ const Mppd = () => {
                       answer: (
                         <ul>
                           <li>
-                            <i className="far fa-check" /> 
+                            <i className="far fa-check" />
                             Panduan Untuk Penyelenggara Layanan
                           </li>
                           <li>
-                            <i className="far fa-check" /> Panduan Layanan Masyarakat
+                            <i className="far fa-check" /> Panduan Layanan
+                            Masyarakat
                           </li>
                         </ul>
                       ),
@@ -232,24 +178,6 @@ const Mppd = () => {
           </div>
         </div>
       </section>
-      {/* faq end */}
-
-      {/* Banner start */}
-      <section className="cta pt-60 mt-100 mb-80">
-        <div className="container">
-          <div className="xb-brand2__mt slider">
-            <div
-              className="xb-cta2"
-              style={{ backgroundImage: "url(/images/mppd_download.png)" }}
-            >
-              <div className="sec-title sec-title--white sec-title--travel mt-20"></div>
-            </div>
-          </div>
-        </div>
-      </section>
-      {/* Banner end */}
-
-      {/* brand start */}
       <section className="brand pt-60">
         <div className="container">
           <h2 className="brand-title text-center mb-50">
@@ -377,7 +305,6 @@ const Mppd = () => {
           </div>
         </div>
       </section>
-      {/* brand end */}
     </>
   );
 };
