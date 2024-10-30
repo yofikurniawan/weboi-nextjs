@@ -43,7 +43,10 @@ const Mppd = () => {
             >
               <div
                 className="xb-cta2"
-                style={{ backgroundImage: "url(/images/mpp/mpp-2.png)" }}
+                style={{
+                  backgroundImage:
+                    "url(https://dev-backend.oganilirkab.go.id/storage/mpp/mpp-2.png)",
+                }}
               >
                 <div className="sec-title sec-title--white sec-title--travel mt-20"></div>
               </div>
@@ -185,7 +188,7 @@ const Mppd = () => {
               <span>Didukung oleh</span>
             </span>
           </h2>
-
+          
           <div className="xb-swiper-sliders brand-slider">
             <Swiper
               modules={[Navigation]}
@@ -206,7 +209,7 @@ const Mppd = () => {
                 <a href="#!">
                   <Image
                     className="img-dukungan"
-                    src="/images/mpp/logo-diskominfo.png"
+                    src="https://dev-backend.oganilirkab.go.id/storage/mpp/logo-diskominfo.png"
                     height={150}
                     width={250}
                     alt=""
@@ -217,7 +220,7 @@ const Mppd = () => {
                 <a href="#!">
                   <Image
                     className="img-dukungan"
-                    src="/images/mpp/bapenda-transp.png"
+                    src="https://dev-backend.oganilirkab.go.id/storage/mpp/bapenda-transp.png"
                     height={150}
                     width={250}
                     alt=""
@@ -228,7 +231,7 @@ const Mppd = () => {
                 <a href="#!">
                   <Image
                     className="img-dukungan"
-                    src="/images/mpp/bpkad.jpg"
+                    src="https://dev-backend.oganilirkab.go.id/storage/mpp/bpkad.jpg"
                     height={150}
                     width={250}
                     alt=""
@@ -239,7 +242,7 @@ const Mppd = () => {
                 <a href="#!">
                   <Image
                     className="img-dukungan"
-                    src="/images/mpp/dpmd.png"
+                    src="https://dev-backend.oganilirkab.go.id/storage/mpp/dpmd.png"
                     height={150}
                     width={250}
                     alt=""
@@ -250,7 +253,7 @@ const Mppd = () => {
                 <a href="#!">
                   <Image
                     className="img-dukungan"
-                    src="/images/mpp/Logo BKPSDM.png"
+                    src="https://dev-backend.oganilirkab.go.id/storage/mpp/Logo BKPSDM.png"
                     height={150}
                     width={250}
                     alt=""
@@ -261,7 +264,7 @@ const Mppd = () => {
                 <a href="#!">
                   <Image
                     className="img-dukungan"
-                    src="/images/mpp/logo-bappeda.png"
+                    src="https://dev-backend.oganilirkab.go.id/storage/mpp/logo-bappeda.png"
                     height={150}
                     width={250}
                     alt=""
@@ -272,7 +275,7 @@ const Mppd = () => {
                 <a href="#!">
                   <Image
                     className="img-dukungan"
-                    src="/images/mpp/LOGO-DAMKAR.png"
+                    src="https://dev-backend.oganilirkab.go.id/storage/mpp/LOGO-DAMKAR.png"
                     height={150}
                     width={250}
                     alt=""
@@ -283,7 +286,7 @@ const Mppd = () => {
                 <a href="#!">
                   <Image
                     className="img-dukungan"
-                    src="/images/mpp/logo_disdik.png"
+                    src="https://dev-backend.oganilirkab.go.id/storage/mpp/logo_disdik.png"
                     height={150}
                     width={250}
                     alt=""
@@ -294,7 +297,7 @@ const Mppd = () => {
                 <a href="#!">
                   <Image
                     className="img-dukungan"
-                    src="/images/mpp/logo bsb.png"
+                    src="https://dev-backend.oganilirkab.go.id/storage/mpp/logo bsb.png"
                     height={150}
                     width={250}
                     alt=""
