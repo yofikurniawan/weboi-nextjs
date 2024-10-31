@@ -24,11 +24,14 @@ const Berita = () => {
 
       try {
         const res = await fetchDataBerita(page.toString());
-        setData(res.data);
-        setCurrentPage(res.current_page);
-        setTotalPages(res.last_page);
+
+        // Check if res.data exists and is an array, then set it
+        setData(Array.isArray(res.data) ? res.data : []);
+        setCurrentPage(res.current_page || 1);
+        setTotalPages(res.last_page || 1);
       } catch (error) {
         console.error("Error fetching data:", error);
+        setData([]); // Set an empty array in case of error
       } finally {
         setLoading(false);
       }
