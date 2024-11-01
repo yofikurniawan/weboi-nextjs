@@ -4,7 +4,7 @@ import { BaseUrl } from "./apiServer";
 const baseUri = BaseUrl();
 
 const apiKey = "webOI!#2024";
-console.log("API_KEY", apiKey);
+// console.log("API_KEY", apiKey);
 
 
 export async function fetchDataBerita(page: string = "1") {
