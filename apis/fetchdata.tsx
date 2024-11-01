@@ -3,7 +3,7 @@ import { BaseUrl } from "./apiServer";
 
 const baseUri = BaseUrl();
 
-const apiKey = process.env.NEXT_PUBLIC_API_KEY;
+const apiKey = "webOI!#2024";
 console.log("API_KEY", apiKey);
 
 
@@ -193,6 +193,7 @@ export async function fetchDataAplikasiLayanan() {
         "Content-Type": "application/json",
         "x-api-key": "aptikaApp@2024", // Add your API key here
       },
+      
     });
     const data = await res.data;
     return data;
