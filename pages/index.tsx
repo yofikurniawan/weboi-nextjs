@@ -822,38 +822,7 @@ const Home = () => {
         {/* End Share Button */}
       </div>
 
-      {pengumumanData.map((item: any, index: number) => (
-        <Modal
-          key={index}
-          show={showModal}
-          onHide={handleClose}
-          className="modal-centered"
-        >
-          <Modal.Header closeButton>
-            <Modal.Title style={{ color: "white", textAlign: "center" }}>
-              {item.title} {/* Tampilkan title dari setiap item */}
-            </Modal.Title>
-          </Modal.Header>
-          <Modal.Body style={{ maxHeight: "400px", overflowY: "auto" }}>
-            <div className="text-center">
-              <Image
-                src={item.thumbnail}
-                alt={item.title}
-                style={{ width: "auto", height: "300px" }}
-                width={0}
-                height={0}
-                sizes="100vw"
-              />
-            </div>
-            <div dangerouslySetInnerHTML={{ __html: item.content }}></div>{" "}
-          </Modal.Body>
-          <Modal.Footer>
-            <Button variant="secondary" onClick={handleClose}>
-              Tutup
-            </Button>
-          </Modal.Footer>
-        </Modal>
-      ))}
+      
     </>
   );
 }
