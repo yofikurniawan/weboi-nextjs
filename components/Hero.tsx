@@ -73,6 +73,7 @@ const HeroSection = () => {
               <p>No data available</p>
             )}
           </div>
+          
           <div className="container-q">
             <div
               className="blog-bg-style1"

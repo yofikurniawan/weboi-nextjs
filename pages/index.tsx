@@ -175,7 +175,7 @@ const Home = () => {
         <Hero />
 
         {/* Mppd */}
-        <section className="cta cta-mpp bg-white mt-5">
+        {/* <section className="cta cta-mpp bg-white mt-5">
           <div className="container">
             <Link
               href="/mppd"
@@ -194,7 +194,7 @@ const Home = () => {
               </div>
             </Link>
           </div>
-        </section>
+        </section> */}
         {/* Mppd */}
 
         {/* blog start */}
@@ -203,6 +203,7 @@ const Home = () => {
             <div className="row mt-none-30">
               <div className="col-lg-3 mt-50">
                 <div id="gpr-kominfo-widget-container" />
+                
               </div>
               <div className="col-lg-9 mt-30">
                 <div className="row" style={{ paddingLeft: 30 }}>
@@ -306,6 +307,8 @@ const Home = () => {
                       </div>
                     </div>
                   )}
+
+                  
 
                   {/* Additional Articles Section */}
                   <div className="col-lg-4 mt-20">
@@ -422,6 +425,20 @@ const Home = () => {
               <li className="nav-item" role="presentation">
                 <button
                   className="nav-link active"
+                  id="xbc-tab4"
+                  data-bs-toggle="tab"
+                  data-bs-target="#xbc-tab-pane4"
+                  type="button"
+                  role="tab"
+                  aria-controls="xbc-tab-pane4"
+                  aria-selected="true"
+                >
+                  Mall Pelayanan Publik
+                </button>
+              </li>
+              <li className="nav-item" role="presentation">
+                <button
+                  className="nav-link"
                   id="xbc-tab1"
                   data-bs-toggle="tab"
                   data-bs-target="#xbc-tab-pane1"
@@ -451,12 +468,12 @@ const Home = () => {
               <li className="nav-item" role="presentation">
                 <button
                   className="nav-link"
-                  id="xbc-tab4"
+                  id="xbc-tab5"
                   data-bs-toggle="tab"
-                  data-bs-target="#xbc-tab-pane4"
+                  data-bs-target="#xbc-tab-pane5"
                   type="button"
                   role="tab"
-                  aria-controls="xbc-tab-pane4"
+                  aria-controls="xbc-tab-pane5"
                   aria-selected="false"
                 >
                   Perangkat Daerah
@@ -466,7 +483,7 @@ const Home = () => {
 
             <div className="tab-content" id="myTabContent">
               <div
-                className="tab-pane animated fadeInUp show active"
+                className="tab-pane animated fadeInUp "
                 id="xbc-tab-pane1"
                 role="tabpanel"
                 aria-labelledby="xbc-tab1"
@@ -512,6 +529,35 @@ const Home = () => {
                     </div>
                     {/* telpon nomor darurat button */}
                   </section>
+                </div>
+              </div>
+
+              <div
+                className="tab-pane animated fadeInUp show active"
+                id="xbc-tab-pane4"
+                role="tabpanel"
+                aria-labelledby="xbc-tab4"
+                tabIndex={0}
+              >
+                <div className="xb-country ul_li">
+                  <div className="container">
+                    <Link
+                      href="/mppd"
+                      className="xb-brand2__mt slider"
+                      data-asw-orgfontsize={16}
+                      style={{ fontSize: 16 }}
+                    >
+                      <div
+                        className="xb-cta2"
+                        style={{
+                          backgroundImage:
+                            "url('https://dev-backend.oganilirkab.go.id/storage/mpp/mppd.png')",
+                        }}
+                      >
+                        <div className="sec-title sec-title--white sec-title--travel mt-20"></div>
+                      </div>
+                    </Link>
+                  </div>
                 </div>
               </div>
 
@@ -613,9 +659,9 @@ const Home = () => {
 
               <div
                 className="tab-pane animated fadeInUp"
-                id="xbc-tab-pane4"
+                id="xbc-tab-pane5"
                 role="tabpanel"
-                aria-labelledby="xbc-tab4"
+                aria-labelledby="xbc-tab5"
                 tabIndex={0}
               >
                 <PerangkatDaerah />
@@ -821,8 +867,6 @@ const Home = () => {
         </div>
         {/* End Share Button */}
       </div>
-
-      
     </>
   );
 }
