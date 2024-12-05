@@ -31,7 +31,7 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="description" content="Website Kabupaten Ogan Ilir" />
-        <link rel="icon" href="/images/logo/fav.svg" />
+        <link rel="icon" href="/favicon.ico" />
       </Head>
       <Script
         src="https://website-widgets.pages.dev/dist/sienna.min.js"
