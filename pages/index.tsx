@@ -395,7 +395,7 @@ const Home = () => {
         <Akuntabilitas />
 
         {/* country start */}
-        <section className="country pt-55 pb-30">
+        <section className="country pt-60 pb-30">
           <div className="container">
             <div className="row mb-30 align-items-center">
               <div className="col-lg-6">
@@ -672,7 +672,7 @@ const Home = () => {
         {/* country end */}
 
         {/* coaching single start */}
-        <section className="coaching-single pt-55 pb-30">
+        {/* <section className="coaching-single pt-55 pb-30">
           <div className="container">
             <div className="row mb-30 align-items-center">
               <div className="col-lg-6">
@@ -834,7 +834,7 @@ const Home = () => {
               </div>
             </div>
           </div>
-        </section>
+        </section> */}
         {/* coaching single end */}
 
         {/* coaching single start */}
