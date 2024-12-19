@@ -145,16 +145,20 @@ const Header = () => {
 
     fetchNavbar()
       .then((responseData) => {
-        if (responseData.status === "error") {
+        if ('status' in responseData && responseData.status === "error") {
           // Jika terjadi error, simpan pesan error
           setError(responseData.message);
           return; // Hentikan eksekusi lebih lanjut
         }
 
-        let menu = responseData["data"]?.filter(
-          (item: any) => item.name_parent === "Main Menu"
-        );
-        setData(menu || []); // Fallback ke array kosong jika data tidak ada
+        if ('data' in responseData) {
+          let menu = Array.isArray(responseData.data)
+            ? responseData.data.filter(
+                (item: any) => item.name_parent === "Main Menu"
+              )
+            : [];
+          setData(menu || []); // Fallback ke array kosong jika data tidak ada
+        }
       })
       .catch((err) => {
         // Tangani error lain yang tidak terduga
@@ -241,7 +245,6 @@ const Header = () => {
           >
             <Link
               href={item.url || "#"}
-
             >
               <span>{item.name}</span>
             </Link>
