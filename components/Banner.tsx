@@ -52,12 +52,12 @@ const Banner = () => {
     slidesToScroll: 1,
     autoplay: true,
     centerMode: true,
-    centerPadding: "80px",
+    centerPadding: "80px", // Untuk layar besar
     responsive: [
       {
-        breakpoint: 768,
+        breakpoint: 768, // Untuk perangkat mobile
         settings: {
-          centerPadding: "20px",
+          centerPadding: "0px", // Menghapus padding di mobile
         },
       },
     ],
@@ -106,8 +106,9 @@ const Banner = () => {
                         <Image
                           src={item.foto}
                           alt=""
-                          width={1500}
-                          height={400}
+                          width={1500} // Ukuran gambar asli
+                          height={400} // Ukuran gambar asli
+                          layout="responsive" // Membuat gambar responsif
                           style={{
                             borderRadius: "10px",
                             transition: "transform 0.3s ease",

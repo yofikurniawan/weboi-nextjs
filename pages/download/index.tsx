@@ -8,6 +8,8 @@ import { useRouter } from "next/router";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import Scroll from "@/components/Scroll";
+import Pagination from "@/components/Pagination"; // Import komponen Pagination
+import Link from "next/link";
 
 const Download = () => {
   const router = useRouter();
@@ -153,12 +155,13 @@ const Download = () => {
               <div className="container">
                 <div className="row justify-content-center">
                   {loading // Tampilkan Skeleton jika loading
-                    ? Array.from({ length: 6 }).map((_, index) => (
+                    ? Array.from({ length: 4 }).map((_, index) => (
                         <div className="col-12 col-md-4 col-xl-2" key={index}>
                           <Skeleton height={150} />
                         </div>
                       ))
-                    : data.length > 0 &&
+                    : data &&
+                      data.length > 0 &&
                       data.map((item, index) => (
                         <div className="col-12 col-md-4 col-xl-2" key={index}>
                           <div className="sidebar-widget">
@@ -195,39 +198,11 @@ const Download = () => {
                       ))}
                 </div>
 
-                <div className="row">
-                  <div className="pagination_wrap pt-90">
-                    <ul>
-                      <li>
-                        <a
-                          href="#"
-                          onClick={(e) => {
-                            e.preventDefault();
-                            handlePageChange(currentPage - 1);
-                          }}
-                          className={currentPage === 1 ? "disabled" : ""}
-                        >
-                          <i className="far fa-long-arrow-left" />
-                        </a>
-                      </li>
-                      {renderPagination()}
-                      <li>
-                        <a
-                          href="#"
-                          onClick={(e) => {
-                            e.preventDefault();
-                            handlePageChange(currentPage + 1);
-                          }}
-                          className={
-                            currentPage === totalPages ? "disabled" : ""
-                          }
-                        >
-                          <i className="far fa-long-arrow-right" />
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
+                <Pagination
+                  currentPage={currentPage}
+                  totalPages={totalPages}
+                  onPageChange={handlePageChange}
+                />
               </div>
             </section>
           </div>

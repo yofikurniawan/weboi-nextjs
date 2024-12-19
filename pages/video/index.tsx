@@ -8,6 +8,8 @@ import { fetchDataVideo } from "@/apis/fetchdata";
 import Skeleton from "react-loading-skeleton"; // Import Skeleton
 import "react-loading-skeleton/dist/skeleton.css"; // Import CSS Skeleton
 import Scroll from "@/components/Scroll";
+import Pagination from "@/components/Pagination"; // Import komponen Pagination
+import Link from "next/link";
 
 const Video = () => {
   const router = useRouter();
@@ -90,7 +92,7 @@ const Video = () => {
                     </div>
                   )
                 )
-              ) : data.length > 0 ? (
+              ) : data && data.length > 0 ? (
                 data.map((item, index) => (
                   <div className="col-lg-4 col-md-6 mt-30" key={index}>
                     <div className="xb-coaching">
@@ -105,7 +107,9 @@ const Video = () => {
                         </div>
                         <div className="xb-item--holder pos-rel">
                           <h6 className="xb-item--title">
-                            <a href={`/video/${item.slug}`}>{item.title}</a>
+                            <Link href={`/video/${item.slug}`}>
+                              {item.title}
+                            </Link>
                           </h6>
                           <p className="xb-item--content">{item.description}</p>
                           <a className="xb-item--link" type="button" href="#">
@@ -120,50 +124,11 @@ const Video = () => {
                 <p>Data tidak ditemukan</p>
               )}
 
-              <div className="pagination_wrap pt-90">
-                <ul>
-                  <li>
-                    <a
-                      href="#"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        handlePageChange(currentPage - 1);
-                      }}
-                      className={currentPage === 1 ? "disabled" : ""}
-                    >
-                      <i className="far fa-long-arrow-left" />
-                    </a>
-                  </li>
-                  {[...Array(totalPages)].map((_, index) => (
-                    <li key={index + 1}>
-                      <a
-                        href="javascript:void(0)"
-                        onClick={(e) => {
-                          e.preventDefault();
-                          handlePageChange(index + 1);
-                        }}
-                        className={
-                          currentPage === index + 1 ? "current_page" : ""
-                        }
-                      >
-                        {index + 1}
-                      </a>
-                    </li>
-                  ))}
-                  <li>
-                    <a
-                      href="javascript:void(0)"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        handlePageChange(currentPage + 1);
-                      }}
-                      className={currentPage === totalPages ? "disabled" : ""}
-                    >
-                      <i className="far fa-long-arrow-right" />
-                    </a>
-                  </li>
-                </ul>
-              </div>
+              <Pagination
+                currentPage={currentPage}
+                totalPages={totalPages}
+                onPageChange={handlePageChange}
+              />
             </div>
           </div>
         </section>

@@ -7,6 +7,8 @@ import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { fetchDataBerita } from "@/apis/fetchdata";
 import Scroll from "@/components/Scroll";
+import Pagination from "@/components/Pagination"; // Import komponen Pagination
+import Link from "next/link";
 
 const Berita = () => {
   const router = useRouter();
@@ -266,7 +268,7 @@ const Berita = () => {
                                   </span>
                                 </div>
                               </div>
-                              <a
+                              <Link
                                 style={{
                                   color: "#fff",
                                   background: "#2553b9",
@@ -278,7 +280,7 @@ const Berita = () => {
                                 href={`/berita/${item.slug}`}
                               >
                                 Baca Selengkapnya...
-                              </a>
+                              </Link>
                             </div>
                           </div>
                         </div>
@@ -293,35 +295,12 @@ const Berita = () => {
               )}
             </div>
 
-            <div className="pagination_wrap pt-90">
-              <ul>
-                <li>
-                  <a
-                    href="#"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      handlePageChange(currentPage - 1);
-                    }}
-                    className={currentPage === 1 ? "disabled" : ""}
-                  >
-                    <i className="far fa-long-arrow-left" />
-                  </a>
-                </li>
-                {renderPagination()}
-                <li>
-                  <a
-                    href="#"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      handlePageChange(currentPage + 1);
-                    }}
-                    className={currentPage === totalPages ? "disabled" : ""}
-                  >
-                    <i className="far fa-long-arrow-right" />
-                  </a>
-                </li>
-              </ul>
-            </div>
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={handlePageChange}
+            />
+            
           </div>
         </section>
       </div>

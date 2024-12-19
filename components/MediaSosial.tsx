@@ -153,7 +153,7 @@ const MediaSosial = () => {
                           data-adapt-container-width="false"
                           data-hide-cover="false"
                           data-show-facepile="true"
-                          data-max-posts="3" // Set max posts to 3
+                          data-max-posts="3"
                         >
                           <blockquote
                             cite="https://www.facebook.com/120208052015160/"

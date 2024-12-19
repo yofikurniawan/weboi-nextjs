@@ -7,6 +7,8 @@ import { fetchDataFoto } from "@/apis/fetchdata";
 import Skeleton from "react-loading-skeleton"; // Import Skeleton
 import "react-loading-skeleton/dist/skeleton.css"; // Import CSS Skeleton
 import Scroll from "@/components/Scroll";
+import Pagination from "@/components/Pagination"; // Import komponen Pagination
+import Link from "next/link";
 
 const Foto = () => {
   const router = useRouter();
@@ -169,7 +171,7 @@ const Foto = () => {
                     <div className="xb-coaching">
                       <div className="xb-item--inner">
                         <div className="xb-item--img">
-                          <a href={`/foto/${item.slug}`}>
+                          <Link href={`/foto/${item.slug}`}>
                             <Image
                               style={{
                                 borderRadius: "10px",
@@ -181,11 +183,13 @@ const Foto = () => {
                               width={1250}
                               height={1000}
                             />
-                          </a>
+                          </Link>
                         </div>
                         <div className="xb-item--holder pos-rel">
                           <h6 className="xb-item--title">
-                            <a href={`/foto/${item.slug}`}>{item.title}</a>
+                            <Link href={`/foto/${item.slug}`}>
+                              {item.title}
+                            </Link>
                           </h6>
                           <p className="xb-item--content">{item.title}</p>
                           <a
@@ -210,35 +214,12 @@ const Foto = () => {
               <p>Data tidak ditemukan</p>
             )}
 
-            <div className="pagination_wrap pt-90">
-              <ul>
-                <li>
-                  <a
-                    href="#"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      handlePageChange(currentPage - 1);
-                    }}
-                    className={currentPage === 1 ? "disabled" : ""}
-                  >
-                    <i className="far fa-long-arrow-left" />
-                  </a>
-                </li>
-                {renderPagination()}
-                <li>
-                  <a
-                    href="#"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      handlePageChange(currentPage + 1);
-                    }}
-                    className={currentPage === totalPages ? "disabled" : ""}
-                  >
-                    <i className="far fa-long-arrow-right" />
-                  </a>
-                </li>
-              </ul>
-            </div>
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={handlePageChange}
+            />
+            
           </div>
         </div>
       </section>

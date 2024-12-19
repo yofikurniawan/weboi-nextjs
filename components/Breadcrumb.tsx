@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 type Breadcrumb = {
   title: string;
@@ -38,7 +39,7 @@ const Breadcrumb = ({ breadcrumbData }: BreadcrumbProps) => {
                 }`}
               >
                 {item.url ? (
-                  <a href={item.url}>{item.title}</a>
+                  <Link href={item.url}>{item.title}</Link>
                 ) : (
                   <span>{item.title}</span>
                 )}

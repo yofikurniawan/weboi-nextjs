@@ -89,8 +89,8 @@ const DetailPengumuman = ({}: any) => {
 
   const breadcrumbData: Breadcrumb[] = [
     { title: "Home", url: "/" },
-    { title: "Detail Foto", url: "/foto" },
-    // { title: pages.title },
+    { title: "Foto", url: "/foto" },
+    { title: pages.title },
   ];
 
   return (

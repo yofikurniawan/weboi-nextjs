@@ -179,9 +179,9 @@ const Header = () => {
             }
           >
             {item.url === "/" ? (
-              <a href={item.url}>
+              <Link href={item.url}>
                 <span>{item.name}</span>
-              </a>
+              </Link>
             ) : (
               <Link href={item.url || "#"}>
                 <span>{item.name}</span>

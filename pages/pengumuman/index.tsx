@@ -7,6 +7,8 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { fetchDatapengumuman } from "@/apis/fetchdata";
 import Scroll from "@/components/Scroll";
+import Pagination from "@/components/Pagination"; // Import komponen Pagination
+import Link from "next/link";
 
 const Pengumuman = () => {
   const router = useRouter();
@@ -31,19 +33,19 @@ const Pengumuman = () => {
     // Get page from query string if available
     const page = parseInt(router.query.page as string) || 1;
 
-    setLoading(true); // Set loading to true before fetching data
+    setLoading(true);
     fetchDatapengumuman(page.toString())
       .then((res: any) => {
         if (isMounted) {
           setData(res.data);
           setCurrentPage(res.current_page);
           setTotalPages(res.last_page);
-          setLoading(false); // Set loading to false after data is fetched
+          setLoading(false);
         }
       })
       .catch((error: any) => {
         console.error(error);
-        setLoading(false); // Ensure loading is set to false even on error
+        setLoading(false);
       });
 
     return () => {
@@ -56,79 +58,6 @@ const Pengumuman = () => {
       setCurrentPage(page);
       router.push(`/pengumuman?page=${page}`, undefined, { scroll: false });
     }
-  };
-  
-
-  const renderPagination = () => {
-    const pagination = [];
-    const maxVisiblePages = 5;
-    const startPage = Math.max(2, currentPage - 2);
-    const endPage = Math.min(totalPages - 1, currentPage + 2);
-
-    pagination.push(
-      <li key="first">
-        <a
-          href="#"
-          onClick={(e) => {
-            e.preventDefault();
-            handlePageChange(1);
-          }}
-          className={currentPage === 1 ? "disabled" : ""}
-        >
-          1
-        </a>
-      </li>
-    );
-
-    if (startPage > 2) {
-      pagination.push(
-        <li key="start-ellipsis">
-          <span>...</span>
-        </li>
-      );
-    }
-
-    for (let i = startPage; i <= endPage; i++) {
-      pagination.push(
-        <li key={i}>
-          <a
-            href="#"
-            onClick={(e) => {
-              e.preventDefault();
-              handlePageChange(i);
-            }}
-            className={currentPage === i ? "current_page" : ""}
-          >
-            {i}
-          </a>
-        </li>
-      );
-    }
-
-    if (endPage < totalPages - 1) {
-      pagination.push(
-        <li key="end-ellipsis">
-          <span>...</span>
-        </li>
-      );
-    }
-
-    pagination.push(
-      <li key="last">
-        <a
-          href="#"
-          onClick={(e) => {
-            e.preventDefault();
-            handlePageChange(totalPages);
-          }}
-          className={currentPage === totalPages ? "disabled" : ""}
-        >
-          {totalPages}
-        </a>
-      </li>
-    );
-
-    return pagination;
   };
 
   return (
@@ -149,19 +78,19 @@ const Pengumuman = () => {
           </div>
           <div className="row">
             {loading ? (
-              [...Array(data.length || 2)].map((_, index) => (
+              [...Array(data.length || 6)].map((_, index) => (
                 <div className="col-lg-4 col-md-6 mt-30" key={index}>
                   <Skeleton height={200} />
-                  <Skeleton count={2} />
+                  <Skeleton count={6} />
                 </div>
               ))
-            ) : data.length > 0 ? (
+            ) : data && data.length > 0 ? (
               data.map((item: any) => (
                 <div className="col-lg-4 col-md-6 mt-30" key={item.id}>
                   <div className="xb-coaching">
                     <div className="xb-item--inner">
                       <div className="xb-item--img">
-                        <a href={`/pengumuman/${item.slug}`}>
+                        <Link href={`/pengumuman/${item.slug}`}>
                           <Image
                             src={
                               item.thumbnail ||
@@ -171,16 +100,18 @@ const Pengumuman = () => {
                             width={1250}
                             height={1000}
                           />
-                        </a>
+                        </Link>
                       </div>
                       <div className="xb-item--holder pos-rel">
                         <h6 className="xb-item--title">
-                          <a href={`/pengumuman/${item.slug}`}>{item.title}</a>
+                          <Link href={`/pengumuman/${item.slug}`}>
+                            {item.title}
+                          </Link>
                         </h6>
                         <p className="xb-item--content">
                           Tanggal Upload: {item.published_at}
                         </p>
-                        <a
+                        <Link
                           className="xb-item--link"
                           type="button"
                           href={`/pengumuman/${item.slug}`}
@@ -191,46 +122,21 @@ const Pengumuman = () => {
                             width={15}
                             height={10}
                           />
-                        </a>
+                        </Link>
                       </div>
                     </div>
                   </div>
                 </div>
               ))
             ) : (
-              <p>No data available.</p>
+              <p>Data tidak ditemukan</p>
             )}
 
-            <div className="pagination_wrap pt-90">
-              <ul>
-                <li>
-                  <a
-                    href="#"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      handlePageChange(currentPage - 1);
-                    }}
-                    className={currentPage === 1 ? "disabled" : ""}
-                  >
-                    <i className="far fa-long-arrow-left" />
-                  </a>
-                </li>
-                {renderPagination()}
-                <li>
-                  <a
-                    href="#"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      handlePageChange(currentPage + 1);
-                    }}
-                    className={currentPage === totalPages ? "disabled" : ""}
-                  >
-                    <i className="far fa-long-arrow-right" />
-                  </a>
-                </li>
-              </ul>
-            </div>
-            
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={handlePageChange}
+            />
           </div>
         </div>
       </section>
