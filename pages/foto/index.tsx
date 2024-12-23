@@ -153,7 +153,7 @@ const Foto = () => {
           </div>
           <div className="row">
             {loading ? ( // Tampilkan Skeleton jika loading
-              [...Array(data.length || 6)].map(
+              [...Array((data && data.length) || 6)].map(
                 (
                   _,
                   index // Tampilkan 6 skeleton
@@ -219,7 +219,6 @@ const Foto = () => {
               totalPages={totalPages}
               onPageChange={handlePageChange}
             />
-            
           </div>
         </div>
       </section>

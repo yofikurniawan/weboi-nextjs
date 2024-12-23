@@ -82,7 +82,7 @@ const Video = () => {
             </div>
             <div className="row">
               {loading ? ( // Tampilkan skeleton saat loading
-                [...Array(data.length || 6)].map(
+                [...Array(data && data.length || 6)].map(
                   (
                     _,
                     index // Menampilkan 6 skeleton

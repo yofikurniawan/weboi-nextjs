@@ -78,7 +78,7 @@ const Pengumuman = () => {
           </div>
           <div className="row">
             {loading ? (
-              [...Array(data.length || 6)].map((_, index) => (
+              [...Array((data && data.length) || 6)].map((_, index) => (
                 <div className="col-lg-4 col-md-6 mt-30" key={index}>
                   <Skeleton height={200} />
                   <Skeleton count={6} />
