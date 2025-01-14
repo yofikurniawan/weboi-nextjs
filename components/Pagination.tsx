@@ -89,7 +89,7 @@ const Pagination: React.FC<PaginationProps> = ({
   };
 
   return (
-    <div className="pagination_wrap pt-90">
+    <div className="pagination_wrap pt-40">
       <ul>
         <li>
           <a

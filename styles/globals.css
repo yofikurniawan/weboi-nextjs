@@ -157,4 +157,108 @@
   border-radius: 10px; /* opsional, untuk sudut yang membulat */
 }
 
+/* Container utama */
+#gpr-kominfo-widget-container {
+    height: 471px;
+    max-width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family: Arial, sans-serif;
+    margin: 10px 0;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    overflow: hidden; /* Mencegah garis putih karena overflow */
+}
+
+/* Header styling */
+#gpr-kominfo-widget-header {
+    display: none;
+}
+
+/* List styling */
+#gpr-kominfo-widget-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* List item styling */
+.gpr-kominfo-widget-list-item {
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+    transition: background-color 0.2s;
+}
+
+.gpr-kominfo-widget-list-item:last-child {
+    border-bottom: none;
+}
+
+.gpr-kominfo-widget-list-item:hover {
+    background-color: #f5f5f5;
+}
+
+/* Link styling */
+.gpr-kominfo-widget-list-item a {
+    color: #333;
+    text-decoration: none;
+    display: block;
+    margin-top: 5px;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.gpr-kominfo-widget-list-item a:hover {
+    color: #005BAA;
+}
+
+/* Text alignment */
+.gpr-kominfo-align-left {
+    float: left;
+    color: #666;
+    font-size: 12px;
+}
+
+.gpr-kominfo-align-right {
+    float: right;
+    color: #888;
+    font-size: 12px;
+}
+
+/* Date styling */
+.gpr-small-date {
+    color: #999;
+}
+
+/* Clear fix */
+.gpr-kominfo-clear-fix {
+    clear: both;
+    height: 0;
+    visibility: hidden;
+}
+
+/* Footer styling */
+#gpr-kominfo-widget-footer {
+    display: none;
+}
+
+/* Icon styling */
+.gpr-kominfo-widget-icon-berita-pemerintahan {
+    position: relative;
+    padding-left: 30px;
+}
+
+.gpr-kominfo-widget-icon-berita-pemerintahan::before {
+    content: '';
+    position: absolute;
+    left: 8px;
+    top: 15px;
+    width: 16px;
+    height: 16px;
+    background-image: url('data:image/svg+xml;utf8,');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.xb-blog-list .xb-blog2:not(:last-child) {
+    margin-bottom: 20px;
+}
 

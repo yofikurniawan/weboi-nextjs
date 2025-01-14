@@ -16,6 +16,13 @@ const HeroSection = () => {
     setActiveIndex(index);
   };
 
+  const truncateHTML = (content: string, maxLength: number) => {
+    const plainText = content.replace(/<\/?[^>]+(>|$)/g, "");
+    return plainText.length > maxLength
+      ? plainText.substring(0, maxLength) + "..."
+      : plainText;
+  };
+
   useEffect(() => {
     const fetchBeritaWithCache = async () => {
       try {
@@ -73,7 +80,7 @@ const HeroSection = () => {
               <p>No data available</p>
             )}
           </div>
-          
+
           <div className="container-q">
             <div
               className="blog-bg-style1"
@@ -129,7 +136,10 @@ const HeroSection = () => {
                         height={150}
                       />
                       <div className="tab-btn-content ms-3">
-                        <h6>{item.title}</h6>
+                        <h6>
+                          {/* {item.title} */}
+                          {truncateHTML(item.title, 60)}
+                        </h6>
                         <div className="content-footer">
                           <span>
                             <i className="fa fa-calendar me-2" />

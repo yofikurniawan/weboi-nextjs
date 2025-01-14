@@ -9,58 +9,88 @@ import Skeleton from "react-loading-skeleton"; // Import Skeleton
 import "react-loading-skeleton/dist/skeleton.css"; // Import CSS Skeleton
 import Scroll from "@/components/Scroll";
 import Pagination from "@/components/Pagination"; // Import komponen Pagination
+import SearchBar from "@/components/SearchBar";
 import Link from "next/link";
 
 const Video = () => {
   const router = useRouter();
-  const [data, setData] = useState<any[]>([]);
-  const [currentPage, setCurrentPage] = useState<number>(1);
-  const [totalPages, setTotalPages] = useState<number>(1);
-  const [loading, setLoading] = useState<boolean>(true); // State loading
-
-  type Breadcrumb = {
-    title: string;
-    url?: string;
-  };
-
-  const breadcrumbData: Breadcrumb[] = [
-    { title: "Home", url: "/" },
-    { title: "List Video" },
-  ];
-
-  useEffect(() => {
-    let isMounted = true;
-
-    // Ambil halaman dari query string jika ada
-    const page = parseInt(router.query.page as string) || 1;
-
-    setLoading(true); // Set loading sebelum fetch
-    fetchDataVideo(page.toString())
-      .then((res: any) => {
-        if (isMounted) {
-          setData(res.data);
-          console.log(res);
-          setCurrentPage(res.current_page);
-          setTotalPages(res.last_page);
-          setLoading(false); // Set loading false setelah data diterima
-        }
-      })
-      .catch((error: any) => {
-        console.error(error);
-        setLoading(false); // Set loading false jika ada error
-      });
-
-    return () => {
-      isMounted = false;
+    const [data, setData] = useState<any[]>([]);
+    const [currentPage, setCurrentPage] = useState<number>(1);
+    const [totalPages, setTotalPages] = useState<number>(1);
+    const [loading, setLoading] = useState<boolean>(true);
+    const [searchTerm, setSearchTerm] = useState<string>("");
+  
+    type Breadcrumb = {
+      title: string;
+      url?: string;
     };
-  }, [router.query.page]);
-
-  const handlePageChange = (page: number) => {
-    if (page >= 1 && page <= totalPages && page !== currentPage) {
-      setCurrentPage(page);
-      router.push(`/video?page=${page}`, undefined, { scroll: false }); // Prevent scroll to top
-    }
-  };
+  
+    const breadcrumbData: Breadcrumb[] = [
+      { title: "Beranda", url: "/" },
+      { title: "Video" },
+    ];
+  
+    const page = parseInt(router.query.page as string) || 1;
+    const search = (router.query.search as string) || "";
+  
+    useEffect(() => {
+      if (router.query.search) {
+        setSearchTerm(router.query.search as string);
+      }
+    }, [router.query.search]);
+  
+    useEffect(() => {
+      let isMounted = true;
+  
+      setLoading(true);
+      fetchDataVideo(page.toString(), searchTerm)
+        .then((res: any) => {
+          if (isMounted) {
+            setData(Array.isArray(res.data) ? res.data : []);
+            setCurrentPage(res.current_page);
+            setTotalPages(res.last_page);
+            setLoading(false);
+          }
+        })
+        .catch((error: any) => {
+          console.error(error);
+          if (isMounted) {
+            setData([]);
+            setLoading(false);
+          }
+        });
+  
+      return () => {
+        isMounted = false;
+      };
+    }, [page, searchTerm]);
+  
+    const handlePageChange = (page: number) => {
+      if (page >= 1 && page <= totalPages && page !== currentPage) {
+        setCurrentPage(page);
+        router.push(
+          `/video?page=${page}${searchTerm ? `&search=${searchTerm}` : ""}`,
+          undefined,
+          { scroll: false }
+        );
+      }
+    };
+  
+    const handleSearch = (newSearchTerm: string) => {
+      setSearchTerm(newSearchTerm);
+      setCurrentPage(1);
+      router.push(
+        `/video?page=1${newSearchTerm ? `&search=${newSearchTerm}` : ""}`,
+        undefined,
+        { scroll: false }
+      );
+    };
+  
+    const handleReset = () => {
+      setSearchTerm("");
+      setCurrentPage(1);
+      router.push("/video?page=1", undefined, { scroll: false });
+    };
 
   return (
     <>
@@ -72,7 +102,7 @@ const Video = () => {
         <Scroll />
 
         {/* coaching start */}
-        <section className="coaching pt-130 pb-120">
+        <section className="coaching pt-50 ">
           <div className="container">
             <div className="sec-title sec-title--travel text-center mb-60">
               <span className="subtitle">
@@ -81,8 +111,15 @@ const Video = () => {
               <h2>Dokumentasi Kegiatan</h2>
             </div>
             <div className="row">
+              <div className="col-12">
+                <SearchBar
+                  initialSearch={search}
+                  onSearch={handleSearch}
+                  onReset={handleReset}
+                />
+              </div>
               {loading ? ( // Tampilkan skeleton saat loading
-                [...Array(data && data.length || 6)].map(
+                [...Array((data && data.length) || 6)].map(
                   (
                     _,
                     index // Menampilkan 6 skeleton

@@ -71,7 +71,7 @@ const KepalaDaerah = () => {
       </Head>
       <Breadcrumb
         breadcrumbData={[
-          { title: "Home", url: "/" },
+          { title: "Beranda", url: "/" },
           { title: "Profil Kepala Daerah" },
         ]}
       />

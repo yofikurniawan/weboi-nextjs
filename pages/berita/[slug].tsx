@@ -11,14 +11,18 @@ import {
   fetchDataCategoryArticle,
 } from "@/apis/fetchdata";
 import Scroll from "@/components/Scroll";
+import Link from "next/link";
 
 const DetailBerita = ({}: any) => {
   const router = useRouter();
-  const { slug } = router.query; // Ambil slug dari URL
+  const { slug } = router.query;
   const [populer, setDataPopuler] = useState<any[]>([]);
   const [category, setCategory] = useState<any[]>([]);
   const [berita, setBerita] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [populerError, setPopulerError] = useState<boolean>(false);
+  const [categoryError, setCategoryError] = useState<boolean>(false);
 
   const [currentUrl, setCurrentUrl] = useState("");
 
@@ -28,17 +32,19 @@ const DetailBerita = ({}: any) => {
     }
   }, []);
 
-
   useEffect(() => {
     if (slug) {
-      // Fetch detail berita berdasarkan slug
+      setLoading(true);
+      setError(null);
       fetchDataDetailBerita(slug as string)
         .then((res: any) => {
-          setBerita(res.data); // Set data berita
+          setBerita(res.data);
           setLoading(false);
         })
         .catch((error) => {
-          console.error("Error fetching detail berita:", error);
+          setError(
+            "Terjadi kesalahan saat memuat berita. Silakan coba lagi nanti."
+          );
           setLoading(false);
         });
     }
@@ -48,9 +54,10 @@ const DetailBerita = ({}: any) => {
     fetchDataBeritaPopuler()
       .then((res: any) => {
         setDataPopuler(res.data);
+        setPopulerError(false);
       })
-      .catch((error: any) => {
-        console.error(error);
+      .catch(() => {
+        setPopulerError(true);
       });
   }, []);
 
@@ -58,17 +65,24 @@ const DetailBerita = ({}: any) => {
     fetchDataCategoryArticle()
       .then((res: any) => {
         setCategory(res.data);
+        setCategoryError(false);
       })
-      .catch((error: any) => {
-        console.error(error);
+      .catch(() => {
+        setCategoryError(true);
       });
   }, []);
 
   const breadcrumbData = [
-    { title: "Home", url: "/" },
+    { title: "Beranda", url: "/" },
     { title: "Berita", url: "/berita" },
-    { title: "Detail Berita" }, // Tidak ada `url` karena ini adalah item terakhir
+    { title: "Detail Berita" },
   ];
+
+  const ErrorMessage = ({ message }: { message: string }) => (
+    <div className="alert alert-warning" role="alert">
+      {message}
+    </div>
+  );
 
   return (
     <>
@@ -79,7 +93,6 @@ const DetailBerita = ({}: any) => {
       <div>
         <Breadcrumb breadcrumbData={breadcrumbData} />
 
-        {/* blog start */}
         <section className="blog pt-120 pb-120">
           <div className="container">
             <div className="row">
@@ -87,20 +100,20 @@ const DetailBerita = ({}: any) => {
                 <div className="blog-post-wrapper">
                   <article className="post-details">
                     {loading ? (
-                      <>
-                        <SkeletonTheme
-                          baseColor="#e0e0e0"
-                          highlightColor="#f0f0f0"
-                        >
-                          <Skeleton height={200} />
-                          <Skeleton height={30} count={3} />
-                        </SkeletonTheme>
-                      </>
+                      <SkeletonTheme
+                        baseColor="#e0e0e0"
+                        highlightColor="#f0f0f0"
+                      >
+                        <Skeleton height={200} />
+                        <Skeleton height={30} count={3} />
+                      </SkeletonTheme>
+                    ) : error ? (
+                      <ErrorMessage message={error} />
                     ) : berita ? (
                       <>
                         <div className="post-thumb">
                           <Image
-                            src={berita.thumbnail} // Gunakan thumbnail dari API
+                            src={berita.thumbnail}
                             alt={berita.title}
                             width={1215}
                             height={644}
@@ -133,63 +146,65 @@ const DetailBerita = ({}: any) => {
                         />
                       </>
                     ) : (
-                      <p>Data tidak ditemukan</p>
+                      <ErrorMessage message="Error saat memuat berita" />
                     )}
                   </article>
 
-                  <div className="post-footer mt-10 mb-40 ul_li_between">
-                    <div className="post-tags ul_li mt-20">
-                      <h5 className="tag-title">Tags:</h5>
-                      <span className="tags-links">
-                        {loading ? (
-                          <SkeletonTheme
-                            baseColor="#e0e0e0"
-                            highlightColor="#f0f0f0"
-                          >
-                            <Skeleton width={100} height={20} count={3} />
-                          </SkeletonTheme>
-                        ) : berita.tags && berita.tags.length > 0 ? (
-                          berita.tags.map(
-                            (tag: { id: number; name: string }) => (
-                              <a key={tag.id} href="#!" rel="tag">
-                                {tag.name}
-                              </a>
+                  {!error && berita && (
+                    <div className="post-footer mt-10 mb-40 ul_li_between">
+                      <div className="post-tags ul_li mt-20">
+                        <h5 className="tag-title">Tags:</h5>
+                        <span className="tags-links">
+                          {loading ? (
+                            <SkeletonTheme
+                              baseColor="#e0e0e0"
+                              highlightColor="#f0f0f0"
+                            >
+                              <Skeleton width={100} height={20} count={3} />
+                            </SkeletonTheme>
+                          ) : berita.tags && berita.tags.length > 0 ? (
+                            berita.tags.map(
+                              (tag: { id: number; name: string }) => (
+                                <a key={tag.id} href="#!" rel="tag">
+                                  {tag.name}
+                                </a>
+                              )
                             )
-                          )
-                        ) : (
-                          <p>No tags available.</p>
-                        )}
-                      </span>
-                    </div>
+                          ) : (
+                            <p>No tags available.</p>
+                          )}
+                        </span>
+                      </div>
 
-                    <div className="social-share ul_li mt-20">
-                      <h5 className="title">Share:</h5>
-                      <ul className="post-share ul_li">
-                        <li>
-                          <a
-                            href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
-                              currentUrl
-                            )}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            <i className="fab fa-facebook-f" />
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            href={`https://api.whatsapp.com/send?text=${encodeURIComponent(
-                              berita ? berita.title : "Judul tidak tersedia"
-                            )}%20${encodeURIComponent(currentUrl)}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            <i className="fab fa-whatsapp" />
-                          </a>
-                        </li>
-                      </ul>
+                      <div className="social-share ul_li mt-20">
+                        <h5 className="title">Share:</h5>
+                        <ul className="post-share ul_li">
+                          <li>
+                            <a
+                              href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
+                                currentUrl
+                              )}`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              <i className="fab fa-facebook-f" />
+                            </a>
+                          </li>
+                          <li>
+                            <a
+                              href={`https://api.whatsapp.com/send?text=${encodeURIComponent(
+                                berita.title
+                              )}%20${encodeURIComponent(currentUrl)}`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              <i className="fab fa-whatsapp" />
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
                     </div>
-                  </div>
+                  )}
                 </div>
               </div>
 
@@ -205,6 +220,8 @@ const DetailBerita = ({}: any) => {
                         >
                           <Skeleton height={120} count={3} />
                         </SkeletonTheme>
+                      ) : populerError ? (
+                        <ErrorMessage message="Gagal memuat berita populer" />
                       ) : populer && populer.length > 0 ? (
                         populer.map((item, index) => (
                           <div
@@ -212,29 +229,29 @@ const DetailBerita = ({}: any) => {
                             className="widget__post-item ul_li_wg_berita"
                           >
                             <div className="post-thumb">
-                              <a href={`/berita/${item.slug}`}>
+                              <Link href={`/berita/${item.slug}`}>
                                 <Image
                                   src={item.thumbnail}
                                   alt={item.title}
                                   width={120}
                                   height={120}
                                 />
-                              </a>
+                              </Link>
                             </div>
                             <div className="post-content">
                               <span className="post-dates">
                                 {item.published_at}
                               </span>
                               <h4 className="post-titles border-effect-2">
-                                <a href={`/berita/${item.slug}`}>
+                                <Link href={`/berita/${item.slug}`}>
                                   {item.title}
-                                </a>
+                                </Link>
                               </h4>
                             </div>
                           </div>
                         ))
                       ) : (
-                        <p>No popular news available.</p>
+                        <p>Tidak ada berita populer</p>
                       )}
                     </div>
                   </div>
@@ -249,6 +266,8 @@ const DetailBerita = ({}: any) => {
                         >
                           <Skeleton height={20} count={3} />
                         </SkeletonTheme>
+                      ) : categoryError ? (
+                        <ErrorMessage message="Gagal memuat kategori" />
                       ) : category && category.length > 0 ? (
                         category.map((item, index) => (
                           <li key={index}>
@@ -258,7 +277,7 @@ const DetailBerita = ({}: any) => {
                           </li>
                         ))
                       ) : (
-                        <p>No categories available.</p>
+                        <p>Tidak ada kategori</p>
                       )}
                     </ul>
                   </div>
@@ -270,8 +289,6 @@ const DetailBerita = ({}: any) => {
       </div>
     </>
   );
-
-
 };
 
 export default DetailBerita;

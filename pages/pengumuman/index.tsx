@@ -7,7 +7,8 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { fetchDatapengumuman } from "@/apis/fetchdata";
 import Scroll from "@/components/Scroll";
-import Pagination from "@/components/Pagination"; // Import komponen Pagination
+import Pagination from "@/components/Pagination";
+import SearchBar from "@/components/SearchBar";
 import Link from "next/link";
 
 const Pengumuman = () => {
@@ -16,6 +17,7 @@ const Pengumuman = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [totalPages, setTotalPages] = useState<number>(1);
   const [loading, setLoading] = useState<boolean>(true);
+  const [searchTerm, setSearchTerm] = useState<string>("");
 
   type Breadcrumb = {
     title: string;
@@ -23,21 +25,27 @@ const Pengumuman = () => {
   };
 
   const breadcrumbData: Breadcrumb[] = [
-    { title: "Home", url: "/" },
+    { title: "Beranda", url: "/" },
     { title: "Pengumuman" },
   ];
+
+  const page = parseInt(router.query.page as string) || 1;
+  const search = (router.query.search as string) || "";
+
+  useEffect(() => {
+    if (router.query.search) {
+      setSearchTerm(router.query.search as string);
+    }
+  }, [router.query.search]);
 
   useEffect(() => {
     let isMounted = true;
 
-    // Get page from query string if available
-    const page = parseInt(router.query.page as string) || 1;
-
     setLoading(true);
-    fetchDatapengumuman(page.toString())
+    fetchDatapengumuman(page.toString(), searchTerm)
       .then((res: any) => {
         if (isMounted) {
-          setData(res.data);
+          setData(Array.isArray(res.data) ? res.data : []);
           setCurrentPage(res.current_page);
           setTotalPages(res.last_page);
           setLoading(false);
@@ -45,19 +53,42 @@ const Pengumuman = () => {
       })
       .catch((error: any) => {
         console.error(error);
-        setLoading(false);
+        if (isMounted) {
+          setData([]);
+          setLoading(false);
+        }
       });
 
     return () => {
       isMounted = false;
     };
-  }, [router.query.page]);
+  }, [page, searchTerm]);
 
   const handlePageChange = (page: number) => {
     if (page >= 1 && page <= totalPages && page !== currentPage) {
       setCurrentPage(page);
-      router.push(`/pengumuman?page=${page}`, undefined, { scroll: false });
+      router.push(
+        `/pengumuman?page=${page}${searchTerm ? `&search=${searchTerm}` : ""}`,
+        undefined,
+        { scroll: false }
+      );
     }
+  };
+
+  const handleSearch = (newSearchTerm: string) => {
+    setSearchTerm(newSearchTerm);
+    setCurrentPage(1);
+    router.push(
+      `/pengumuman?page=1${newSearchTerm ? `&search=${newSearchTerm}` : ""}`,
+      undefined,
+      { scroll: false }
+    );
+  };
+
+  const handleReset = () => {
+    setSearchTerm("");
+    setCurrentPage(1);
+    router.push("/pengumuman?page=1", undefined, { scroll: false });
   };
 
   return (
@@ -68,7 +99,7 @@ const Pengumuman = () => {
       <Breadcrumb breadcrumbData={breadcrumbData} />
       <Scroll />
 
-      <section className="coaching pt-130 pb-120">
+      <section className="coaching pt-50">
         <div className="container">
           <div className="sec-title sec-title--travel text-center mb-60">
             <span className="subtitle">
@@ -76,9 +107,20 @@ const Pengumuman = () => {
             </span>
             <h2>Pengumuman Kegiatan</h2>
           </div>
+
+          <div className="row mb-4">
+            <div className="col-12">
+              <SearchBar
+                initialSearch={search}
+                onSearch={handleSearch}
+                onReset={handleReset}
+              />
+            </div>
+          </div>
+
           <div className="row">
             {loading ? (
-              [...Array((data && data.length) || 6)].map((_, index) => (
+              [...Array(6)].map((_, index) => (
                 <div className="col-lg-4 col-md-6 mt-30" key={index}>
                   <Skeleton height={200} />
                   <Skeleton count={6} />
@@ -129,15 +171,23 @@ const Pengumuman = () => {
                 </div>
               ))
             ) : (
-              <p>Data tidak ditemukan</p>
+              <div className="col-12 text-center mt-4">
+                <p>Data tidak ditemukan</p>
+              </div>
             )}
-
-            <Pagination
-              currentPage={currentPage}
-              totalPages={totalPages}
-              onPageChange={handlePageChange}
-            />
           </div>
+
+          {data && data.length > 0 && (
+            <div className="row mt-4">
+              <div className="col-12">
+                <Pagination
+                  currentPage={currentPage}
+                  totalPages={totalPages}
+                  onPageChange={handlePageChange}
+                />
+              </div>
+            </div>
+          )}
         </div>
       </section>
     </>

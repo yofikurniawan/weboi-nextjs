@@ -19,8 +19,8 @@ const Penghargaan = () => {
   const [isFiltered, setIsFiltered] = useState(false); // Menandakan apakah filter aktif
 
   const breadcrumbData: Breadcrumb[] = [
-    { title: "Home", url: "/" },
-    { title: "Daftar Penghargaan" },
+    { title: "Beranda", url: "/" },
+    { title: "Penghargaan" },
   ];
 
   useEffect(() => {
@@ -124,7 +124,7 @@ const Penghargaan = () => {
       <Breadcrumb breadcrumbData={breadcrumbData} />
       <Scroll />
 
-      <section className="coaching pt-130 pb-120">
+      <section className="coaching pt-50">
         <div className="container">
           <div className="row mt-none-30">
             <div className="sec-title sec-title--travel text-center mb-60">
@@ -157,10 +157,11 @@ const Penghargaan = () => {
                     onChange={handleTahunChange}
                   >
                     <option value="">Semua Tahun</option>
+                    <option value="2025">2025</option>
+                    <option value="2024">2024</option>
                     <option value="2023">2023</option>
                     <option value="2022">2022</option>
                     <option value="2021">2021</option>
-                    {/* Tambahkan tahun lain sesuai kebutuhan */}
                   </select>
                 </div>
                 <div className="col-md-2">
@@ -226,7 +227,9 @@ const Penghargaan = () => {
                     </tbody>
                   </table>
                 ) : (
-                  <p className="text-danger text-center">Tidak ada data penghargaan yang tersedia.</p>
+                  <p className="text-danger text-center">
+                    Tidak ada data penghargaan yang tersedia.
+                  </p>
                 )}
               </div>
 

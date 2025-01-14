@@ -7,9 +7,9 @@ const apiKey = "webOI!#2024";
 // console.log("API_KEY", apiKey);
 
 
-export async function fetchDataBerita(page: string = "1") {
+export async function fetchDataBerita(page: string = "1", search: string = "") {
   try {
-    const res = await axios.get(`${baseUri}/berita?page=${page}`, {
+    const res = await axios.get(`${baseUri}/berita?page=${page}&search=${search}`, {
       headers: {
         "Content-Type": "application/json",
         "X-API-Key": apiKey,
@@ -110,9 +110,9 @@ export async function fetchDataCategoryArticle() {
 }
 
 // foto
-export async function fetchDataFoto(page: string = "1") {
+export async function fetchDataFoto(page: string = "1", search: string = "") {
   try {
-    const res = await axios.get(`${baseUri}/gallery?page=${page}`, {
+    const res = await axios.get(`${baseUri}/gallery?page=${page}&search=${search}`, {
       headers: {
         "Content-Type": "application/json",
         "X-API-Key": apiKey,
@@ -126,7 +126,6 @@ export async function fetchDataFoto(page: string = "1") {
     };
   }
 }
-
 
 // detail foto slug
 export async function fetchDataDetailFoto(slug: string) {
@@ -148,9 +147,9 @@ export async function fetchDataDetailFoto(slug: string) {
 }
 
 // video
-export async function fetchDataVideo(page: string = "1") {
+export async function fetchDataVideo(page: string = "1", search: string = "") {
   try {
-    const res = await axios.get(`${baseUri}/video?page=${page}`, {
+    const res = await axios.get(`${baseUri}/video?page=${page}&search=${search}`, {
       headers: {
         "Content-Type": "application/json",
         "X-API-Key": apiKey,
@@ -225,11 +224,10 @@ export async function fetchDataJenisAplikasi(jenisPd = "Perangkat Daerah") {
   }
 }
 
-
 // download
-export async function fetchDataDownload(page: string = "1") {
+export async function fetchDataDownload(page: string = "1", search: string = "") {
   try {
-    const res = await axios.get(`${baseUri}/download?page=${page}`, {
+    const res = await axios.get(`${baseUri}/download?page=${page}&search=${search}`, {
       headers: {
         "Content-Type": "application/json",
         "X-API-Key": apiKey,
@@ -263,10 +261,11 @@ export async function fetchDataDetailDownload(slug: string) {
   }
 }
 
+
 // pengumuman
-export async function fetchDatapengumuman(page: string = "1") {
+export async function fetchDatapengumuman(page: string = "1", search: string = "") {
   try {
-    const res = await axios.get(`${baseUri}/pengumuman?page=${page}`, {
+    const res = await axios.get(`${baseUri}/pengumuman?page=${page}&search=${search}`, {
       headers: {
         "Content-Type": "application/json",
         "X-API-Key": apiKey,

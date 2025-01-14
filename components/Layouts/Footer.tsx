@@ -370,7 +370,7 @@ const Footer = () => {
         </div>
         <div className="footer__copyrightst ul_li_between ft_bg">
           <div className="footer__copyright-text mt-15">
-            Copyright © 2024 Developed by Diskominfo Ogan Ilir All rights
+            Copyright © 2025 Diskominfo Ogan Ilir All rights
             reserved.
           </div>
           <div className="mt-20">

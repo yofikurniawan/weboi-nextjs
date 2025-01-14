@@ -65,6 +65,9 @@ export default function AkuntabilitasStatis() {
                 Akuntabilitas <br />
                 <span>Pemerintah Daerah</span>
               </h2>
+              <p className="description wow fadeInUp">
+                Berikut adalah beberapa kategori akuntabilitas pemerintah daerah
+              </p>
               <div
                 className="btns pt-20 wow fadeInUp"
                 data-wow-delay="600ms"
@@ -144,6 +147,13 @@ export default function AkuntabilitasStatis() {
                             alt=""
                             width={800}
                             height={500}
+                            style={
+                              {
+                                borderRadius: "20px",
+                                objectFit: "cover",
+                                border: "1px solidrgb(95, 65, 65)",
+                              }
+                            }
                           />
                           <div className="xb-item--holder">
                             <h3 className="xb-item--title">{item.name}</h3>

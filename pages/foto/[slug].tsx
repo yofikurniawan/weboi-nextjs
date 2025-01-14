@@ -88,9 +88,8 @@ const DetailPengumuman = ({}: any) => {
   };
 
   const breadcrumbData: Breadcrumb[] = [
-    { title: "Home", url: "/" },
+    { title: "Beranda", url: "/" },
     { title: "Foto", url: "/foto" },
-    { title: pages.title },
   ];
 
   return (

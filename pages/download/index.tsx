@@ -9,129 +9,95 @@ import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import Scroll from "@/components/Scroll";
 import Pagination from "@/components/Pagination"; // Import komponen Pagination
-import Link from "next/link";
+import SearchBar from "@/components/SearchBar";
 
 const Download = () => {
   const router = useRouter();
-  const [data, setData] = useState<any[]>([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
-  const [loading, setLoading] = useState(true); // State untuk loading
+      const [data, setData] = useState<any[]>([]);
+      const [currentPage, setCurrentPage] = useState<number>(1);
+      const [totalPages, setTotalPages] = useState<number>(1);
+      const [loading, setLoading] = useState<boolean>(true);
+      const [searchTerm, setSearchTerm] = useState<string>("");
+    
+      type Breadcrumb = {
+        title: string;
+        url?: string;
+      };
 
-  type Breadcrumb = {
-    title: string;
-    url?: string;
-  };
-
-  const breadcrumbData: Breadcrumb[] = [
-    { title: "Home", url: "/" },
-    { title: "Download" },
-  ];
-
-  useEffect(() => {
-    let isMounted = true;
-
-    // Ambil halaman dari query string jika ada
-    const page = parseInt(router.query.page as string) || 1;
-
-    setLoading(true); // Set loading ke true saat mulai fetching data
-    fetchDataDownload(page.toString())
-      .then((res: any) => {
-        if (isMounted) {
-          setData(res.data);
-          setCurrentPage(res.current_page);
-          setTotalPages(res.last_page);
-          setLoading(false); // Set loading ke false setelah data diambil
+      const truncateHTML = (content: string, maxLength: number) => {
+        const plainText = content.replace(/<\/?[^>]+(>|$)/g, "");
+        return plainText.length > maxLength
+          ? plainText.substring(0, maxLength) + "..."
+          : plainText;
+      };
+    
+      const breadcrumbData: Breadcrumb[] = [
+        { title: "Beranda", url: "/" },
+        { title: "Download" },
+      ];
+    
+      const page = parseInt(router.query.page as string) || 1;
+      const search = (router.query.search as string) || "";
+    
+      useEffect(() => {
+        if (router.query.search) {
+          setSearchTerm(router.query.search as string);
         }
-      })
-      .catch((error: any) => {
-        console.error(error);
-        setLoading(false); // Set loading ke false jika terjadi error
-      });
-
-    return () => {
-      isMounted = false;
-    };
-  }, [router.query.page]);
-
-  const handlePageChange = (page: number) => {
-    if (page >= 1 && page <= totalPages && page !== currentPage) {
-      setCurrentPage(page);
-      router.push(`/download?page=${page}`, undefined, { scroll: false });
-    }
-  };
-
-    const renderPagination = () => {
-    const pagination = [];
-    const maxVisiblePages = 5;
-    const startPage = Math.max(2, currentPage - 2);
-    const endPage = Math.min(totalPages - 1, currentPage + 2);
-
-    pagination.push(
-      <li key="first">
-        <a
-          href="#"
-          onClick={(e) => {
-            e.preventDefault();
-            handlePageChange(1);
-          }}
-          className={currentPage === 1 ? "disabled" : ""}
-        >
-          1
-        </a>
-      </li>
-    );
-
-    if (startPage > 2) {
-      pagination.push(
-        <li key="start-ellipsis">
-          <span>...</span>
-        </li>
-      );
-    }
-
-    for (let i = startPage; i <= endPage; i++) {
-      pagination.push(
-        <li key={i}>
-          <a
-            href="#"
-            onClick={(e) => {
-              e.preventDefault();
-              handlePageChange(i);
-            }}
-            className={currentPage === i ? "current_page" : ""}
-          >
-            {i}
-          </a>
-        </li>
-      );
-    }
-
-    if (endPage < totalPages - 1) {
-      pagination.push(
-        <li key="end-ellipsis">
-          <span>...</span>
-        </li>
-      );
-    }
-
-    pagination.push(
-      <li key="last">
-        <a
-          href="#"
-          onClick={(e) => {
-            e.preventDefault();
-            handlePageChange(totalPages);
-          }}
-          className={currentPage === totalPages ? "disabled" : ""}
-        >
-          {totalPages}
-        </a>
-      </li>
-    );
-
-    return pagination;
-  };
+      }, [router.query.search]);
+    
+      useEffect(() => {
+        let isMounted = true;
+    
+        setLoading(true);
+        fetchDataDownload(page.toString(), searchTerm)
+          .then((res: any) => {
+            if (isMounted) {
+              setData(Array.isArray(res.data) ? res.data : []);
+              setCurrentPage(res.current_page);
+              setTotalPages(res.last_page);
+              setLoading(false);
+            }
+          })
+          .catch((error: any) => {
+            console.error(error);
+            if (isMounted) {
+              setData([]);
+              setLoading(false);
+            }
+          });
+    
+        return () => {
+          isMounted = false;
+        };
+      }, [page, searchTerm]);
+    
+      const handlePageChange = (page: number) => {
+        if (page >= 1 && page <= totalPages && page !== currentPage) {
+          setCurrentPage(page);
+          router.push(
+            `/download?page=${page}${searchTerm ? `&search=${searchTerm}` : ""}`,
+            undefined,
+            { scroll: false }
+          );
+        }
+      };
+    
+      const handleSearch = (newSearchTerm: string) => {
+        setSearchTerm(newSearchTerm);
+        setCurrentPage(1);
+        router.push(
+          `/download?page=1${newSearchTerm ? `&search=${newSearchTerm}` : ""}`,
+          undefined,
+          { scroll: false }
+        );
+      };
+    
+      const handleReset = () => {
+        setSearchTerm("");
+        setCurrentPage(1);
+        router.push("/download?page=1", undefined, { scroll: false });
+      };
+  
 
   return (
     <>
@@ -143,17 +109,22 @@ const Download = () => {
         <Scroll />
 
         {/* coaching start */}
-        <section className="coaching pt-130 pb-120">
+        <section className="coaching pt-50 ">
           <div className="container">
             <div className="sec-title sec-title--travel text-center mb-60">
-              <span className="subtitle">
-                File atau Dokumen yang dapat di download
-              </span>
+              <span className="subtitle">Dokumen yang dapat di download</span>
               <h2>Download File atau Dokumen</h2>
             </div>
-            <section className="coaching-single pt-20 pb-130">
+            <section className="coaching-single pt-20 ">
               <div className="container">
                 <div className="row justify-content-center">
+                  <div className="col-12">
+                    <SearchBar
+                      initialSearch={search}
+                      onSearch={handleSearch}
+                      onReset={handleReset}
+                    />
+                  </div>
                   {loading // Tampilkan Skeleton jika loading
                     ? Array.from({ length: 4 }).map((_, index) => (
                         <div className="col-12 col-md-4 col-xl-2" key={index}>
@@ -183,7 +154,7 @@ const Download = () => {
                                         />
                                       </div>
                                       <div className="xb-item--bd">
-                                        <p>{item.title}</p>
+                                        <p>{truncateHTML(item.title, 50)}</p>
                                       </div>
                                       <div className="xb-item--size">
                                         {item.size}

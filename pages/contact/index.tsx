@@ -35,7 +35,7 @@ const Contact: React.FC = () => {
   };
 
   const breadcrumbData: BreadcrumbType[] = [
-    { title: "Home", url: "/" },
+    { title: "Beranda", url: "/" },
     { title: "Kontak" },
   ];
 

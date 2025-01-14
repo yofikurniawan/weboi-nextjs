@@ -12,8 +12,8 @@ import ErrorHandler from "../../components/ErrorHandler";
 const Akuntabilitas = () => {
   const [category, setCategory] = useState<any[]>([]);
   const [akuntabilitas, setAkuntabilitas] = useState<any[]>([]); // Inisialisasi sebagai array
-  const [selectedCategory, setSelectedCategory] = useState<string>("3"); // Default kategori
-  const [selectedTahun, setSelectedTahun] = useState<string>("2024"); // Default tahun
+  const [selectedCategory, setSelectedCategory] = useState<string>(""); // Default kategori
+  const [selectedTahun, setSelectedTahun] = useState<string>("2025"); // Default tahun
   const [loading, setLoading] = useState<boolean>(false); // Indikator loading
   const [errorMessage, setErrorMessage] = useState<string>(""); // Pesan error jika data tidak ada
 
@@ -23,7 +23,7 @@ const Akuntabilitas = () => {
   };
 
   const breadcrumbData: Breadcrumb[] = [
-    { title: "Home", url: "/" },
+    { title: "Beranda", url: "/" },
     { title: "Akuntabilitas" },
   ];
 
@@ -39,10 +39,19 @@ const Akuntabilitas = () => {
       });
   }, []);
 
-  // Mengambil data akuntabilitas berdasarkan kategori dan tahun yang dipilih
   useEffect(() => {
+    // Reset pesan error setiap kali fetch data
+    setErrorMessage("");
+
+    // Cek jika selectedCategory belum dipilih
+    if (!selectedCategory) {
+      setErrorMessage("Pilih kategori akuntabilitas terlebih dahulu.");
+      setAkuntabilitas([]); // Pastikan data kosong jika kategori belum dipilih
+      setLoading(false); // Set loading ke false karena tidak melakukan fetch data
+      return;
+    }
+
     setLoading(true);
-    setErrorMessage(""); // Reset pesan error setiap kali fetch data
     fetchDataAkuntabilitas(selectedCategory, selectedTahun)
       .then((res: any) => {
         if (res.data && res.data.length > 0) {
@@ -79,7 +88,7 @@ const Akuntabilitas = () => {
         <Breadcrumb breadcrumbData={breadcrumbData} />
 
         {/* coaching single start */}
-        <section className="coaching-single pt-120 pb-130">
+        <section className="coaching-single pt-50 pb-10">
           <div className="container">
             <div className="row">
               <div className="col-lg-4">
@@ -242,14 +251,7 @@ const Akuntabilitas = () => {
                                   }}
                                 >
                                   Unduh Dokumen
-                                  <span>
-                                    <Image
-                                      src="/images/icon/arrow-right.svg"
-                                      alt=""
-                                      width={20}
-                                      height={20}
-                                    />
-                                  </span>
+                                  
                                 </button>
                               ) : (
                                 <p>Dokumen tidak tersedia</p>
@@ -353,14 +355,7 @@ const Akuntabilitas = () => {
                                       }}
                                     >
                                       Unduh Dokumen
-                                      <span>
-                                        <Image
-                                          src="/images/icon/arrow-right.svg"
-                                          alt=""
-                                          width={20}
-                                          height={20}
-                                        />
-                                      </span>
+                                      
                                     </button>
                                   )}
                                 </div>

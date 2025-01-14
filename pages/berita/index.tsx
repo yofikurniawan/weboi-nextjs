@@ -7,8 +7,9 @@ import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { fetchDataBerita } from "@/apis/fetchdata";
 import Scroll from "@/components/Scroll";
-import Pagination from "@/components/Pagination"; // Import komponen Pagination
+import Pagination from "@/components/Pagination";
 import Link from "next/link";
+import SearchBar from "@/components/SearchBar";
 
 const Berita = () => {
   const router = useRouter();
@@ -16,109 +17,62 @@ const Berita = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [totalPages, setTotalPages] = useState<number>(1);
   const [loading, setLoading] = useState(true);
+  const [searchTerm, setSearchTerm] = useState<string>("");
 
   const page = parseInt(router.query.page as string) || 1;
+  const search = (router.query.search as string) || "";
   const itemsPerPage = 6;
+
+  useEffect(() => {
+    if (router.query.search) {
+      setSearchTerm(router.query.search as string);
+    }
+  }, [router.query.search]);
 
   useEffect(() => {
     const fetchBerita = async () => {
       setLoading(true);
-
       try {
-        const res = await fetchDataBerita(page.toString());
-
-        // Check if res.data exists and is an array, then set it
+        const res = await fetchDataBerita(page.toString(), searchTerm);
         setData(Array.isArray(res.data) ? res.data : []);
         setCurrentPage(res.current_page || 1);
         setTotalPages(res.last_page || 1);
       } catch (error) {
         console.error("Error fetching data:", error);
-        setData([]); // Set an empty array in case of error
+        setData([]);
       } finally {
         setLoading(false);
       }
     };
 
     fetchBerita();
-  }, [page, router.query.page]);
+  }, [page, searchTerm]);
 
   const handlePageChange = (page: number) => {
     if (page >= 1 && page <= totalPages && page !== currentPage) {
       setCurrentPage(page);
-      router.push(`/berita?page=${page}`, undefined, { scroll: false });
+      router.push(
+        `/berita?page=${page}${searchTerm ? `&search=${searchTerm}` : ""}`,
+        undefined,
+        { scroll: false }
+      );
     }
   };
 
-  const renderPagination = () => {
-    const pagination = [];
-    const maxVisiblePages = 5;
-    const startPage = Math.max(2, currentPage - 2);
-    const endPage = Math.min(totalPages - 1, currentPage + 2);
-
-    pagination.push(
-      <li key="first">
-        <a
-          href="#"
-          onClick={(e) => {
-            e.preventDefault();
-            handlePageChange(1);
-          }}
-          className={currentPage === 1 ? "disabled" : ""}
-        >
-          1
-        </a>
-      </li>
+  const handleSearch = (newSearchTerm: string) => {
+    setSearchTerm(newSearchTerm);
+    setCurrentPage(1);
+    router.push(
+      `/berita?page=1${newSearchTerm ? `&search=${newSearchTerm}` : ""}`,
+      undefined,
+      { scroll: false }
     );
+  };
 
-    if (startPage > 2) {
-      pagination.push(
-        <li key="start-ellipsis">
-          <span>...</span>
-        </li>
-      );
-    }
-
-    for (let i = startPage; i <= endPage; i++) {
-      pagination.push(
-        <li key={i}>
-          <a
-            href="#"
-            onClick={(e) => {
-              e.preventDefault();
-              handlePageChange(i);
-            }}
-            className={currentPage === i ? "current_page" : ""}
-          >
-            {i}
-          </a>
-        </li>
-      );
-    }
-
-    if (endPage < totalPages - 1) {
-      pagination.push(
-        <li key="end-ellipsis">
-          <span>...</span>
-        </li>
-      );
-    }
-
-    pagination.push(
-      <li key="last">
-        <a
-          href="#"
-          onClick={(e) => {
-            e.preventDefault();
-            handlePageChange(totalPages);
-          }}
-          className={currentPage === totalPages ? "disabled" : ""}
-        >
-          {totalPages}
-        </a>
-      </li>
-    );
-
-    return pagination;
+  const handleReset = () => {
+    setSearchTerm("");
+    setCurrentPage(1);
+    router.push("/berita?page=1", undefined, { scroll: false });
   };
 
   return (
@@ -129,14 +83,19 @@ const Berita = () => {
       <Scroll />
       <div>
         <Breadcrumb
-          breadcrumbData={[
-            { title: "Home", url: "/" },
-            { title: "Daftar Berita" },
-          ]}
+          breadcrumbData={[{ title: "Beranda", url: "/" }, { title: "Berita" }]}
         />
-        <section className="blog pt-120 pb-120">
+        <section className="blog pt-30">
           <div className="container">
             <div className="row">
+              <div className="col-lg-12 mb-4">
+                <SearchBar
+                  initialSearch={search}
+                  onSearch={handleSearch}
+                  onReset={handleReset}
+                />
+              </div>
+
               {loading ? (
                 <div className="row">
                   {Array.from({ length: itemsPerPage }).map((_, index) => (
@@ -287,7 +246,7 @@ const Berita = () => {
                       </div>
                     ))
                   ) : (
-                    <div className="col-lg-4 mb-4">
+                    <div className="col-lg-12 mb-4">
                       <p>Tidak ada data yang tersedia.</p>
                     </div>
                   )}
@@ -295,12 +254,13 @@ const Berita = () => {
               )}
             </div>
 
-            <Pagination
-              currentPage={currentPage}
-              totalPages={totalPages}
-              onPageChange={handlePageChange}
-            />
-            
+            {data.length > 0 && (
+              <Pagination
+                currentPage={currentPage}
+                totalPages={totalPages}
+                onPageChange={handlePageChange}
+              />
+            )}
           </div>
         </section>
       </div>

@@ -8,131 +8,95 @@ import Skeleton from "react-loading-skeleton"; // Import Skeleton
 import "react-loading-skeleton/dist/skeleton.css"; // Import CSS Skeleton
 import Scroll from "@/components/Scroll";
 import Pagination from "@/components/Pagination"; // Import komponen Pagination
+import SearchBar from "@/components/SearchBar";
 import Link from "next/link";
 
 const Foto = () => {
   const router = useRouter();
-  const [data, setData] = useState<any[]>([]);
-  const [currentPage, setCurrentPage] = useState<number>(1);
-  const [totalPages, setTotalPages] = useState<number>(1);
-  const [isMounted, setIsMounted] = useState(false);
-  const [loading, setLoading] = useState<boolean>(true); // State loading
-
-  type Breadcrumb = {
-    title: string;
-    url?: string;
-  };
-
-  const breadcrumbData: Breadcrumb[] = [
-    { title: "Home", url: "/" },
-    { title: "Gallery" },
-  ];
-
-  useEffect(() => {
-    let isMounted = true;
-
-    // Ambil halaman dari query string jika ada
-    const page = parseInt(router.query.page as string) || 1;
-
-    setLoading(true); // Set loading true sebelum fetch data
-    fetchDataFoto(page.toString())
-      .then((res: any) => {
-        if (isMounted) {
-          setData(res.data);
-          console.log(res);
-          setCurrentPage(res.current_page);
-          setTotalPages(res.last_page);
-          setLoading(false); // Set loading false setelah data diambil
-        }
-      })
-      .catch((error: any) => {
-        console.error(error);
-        setLoading(false); // Set loading false jika ada error
-      });
-
-    return () => {
-      isMounted = false;
+    const [data, setData] = useState<any[]>([]);
+    const [currentPage, setCurrentPage] = useState<number>(1);
+    const [totalPages, setTotalPages] = useState<number>(1);
+    const [loading, setLoading] = useState<boolean>(true);
+    const [searchTerm, setSearchTerm] = useState<string>("");
+  
+    type Breadcrumb = {
+      title: string;
+      url?: string;
     };
-  }, [router.query.page]);
+  
+    const breadcrumbData: Breadcrumb[] = [
+      { title: "Beranda", url: "/" },
+      { title: "Foto" },
+    ];
 
-  const handlePageChange = (page: number) => {
-    if (page >= 1 && page <= totalPages && page !== currentPage) {
-      setCurrentPage(page);
-      router.push(`/foto?page=${page}`, undefined, { scroll: false });
-    }
-  };
-
-  const renderPagination = () => {
-    const pagination = [];
-    const maxVisiblePages = 5;
-    const startPage = Math.max(2, currentPage - 2);
-    const endPage = Math.min(totalPages - 1, currentPage + 2);
-
-    pagination.push(
-      <li key="first">
-        <a
-          href="#"
-          onClick={(e) => {
-            e.preventDefault();
-            handlePageChange(1);
-          }}
-          className={currentPage === 1 ? "disabled" : ""}
-        >
-          1
-        </a>
-      </li>
-    );
-
-    if (startPage > 2) {
-      pagination.push(
-        <li key="start-ellipsis">
-          <span>...</span>
-        </li>
+    const truncateHTML = (content: string, maxLength: number) => {
+      const plainText = content.replace(/<\/?[^>]+(>|$)/g, "");
+      return plainText.length > maxLength
+        ? plainText.substring(0, maxLength) + "..."
+        : plainText;
+    };
+  
+    const page = parseInt(router.query.page as string) || 1;
+    const search = (router.query.search as string) || "";
+  
+    useEffect(() => {
+      if (router.query.search) {
+        setSearchTerm(router.query.search as string);
+      }
+    }, [router.query.search]);
+  
+    useEffect(() => {
+      let isMounted = true;
+  
+      setLoading(true);
+      fetchDataFoto(page.toString(), searchTerm)
+        .then((res: any) => {
+          if (isMounted) {
+            setData(Array.isArray(res.data) ? res.data : []);
+            setCurrentPage(res.current_page);
+            setTotalPages(res.last_page);
+            setLoading(false);
+          }
+        })
+        .catch((error: any) => {
+          console.error(error);
+          if (isMounted) {
+            setData([]);
+            setLoading(false);
+          }
+        });
+  
+      return () => {
+        isMounted = false;
+      };
+    }, [page, searchTerm]);
+  
+    const handlePageChange = (page: number) => {
+      if (page >= 1 && page <= totalPages && page !== currentPage) {
+        setCurrentPage(page);
+        router.push(
+          `/foto?page=${page}${searchTerm ? `&search=${searchTerm}` : ""}`,
+          undefined,
+          { scroll: false }
+        );
+      }
+    };
+  
+    const handleSearch = (newSearchTerm: string) => {
+      setSearchTerm(newSearchTerm);
+      setCurrentPage(1);
+      router.push(
+        `/foto?page=1${newSearchTerm ? `&search=${newSearchTerm}` : ""}`,
+        undefined,
+        { scroll: false }
       );
-    }
-
-    for (let i = startPage; i <= endPage; i++) {
-      pagination.push(
-        <li key={i}>
-          <a
-            href="#"
-            onClick={(e) => {
-              e.preventDefault();
-              handlePageChange(i);
-            }}
-            className={currentPage === i ? "current_page" : ""}
-          >
-            {i}
-          </a>
-        </li>
-      );
-    }
-
-    if (endPage < totalPages - 1) {
-      pagination.push(
-        <li key="end-ellipsis">
-          <span>...</span>
-        </li>
-      );
-    }
-
-    pagination.push(
-      <li key="last">
-        <a
-          href="#"
-          onClick={(e) => {
-            e.preventDefault();
-            handlePageChange(totalPages);
-          }}
-          className={currentPage === totalPages ? "disabled" : ""}
-        >
-          {totalPages}
-        </a>
-      </li>
-    );
-
-    return pagination;
-  };
+    };
+  
+    const handleReset = () => {
+      setSearchTerm("");
+      setCurrentPage(1);
+      router.push("/foto?page=1", undefined, { scroll: false });
+    };
 
   return (
     <>
@@ -143,7 +107,7 @@ const Foto = () => {
       <Breadcrumb breadcrumbData={breadcrumbData} />
       <Scroll />
 
-      <section className="coaching pt-130 pb-120">
+      <section className="coaching pt-50">
         <div className="container">
           <div className="sec-title sec-title--travel text-center mb-60">
             <span className="subtitle">
@@ -152,6 +116,14 @@ const Foto = () => {
             <h2>Dokumentasi Kegiatan</h2>
           </div>
           <div className="row">
+            <div className="col-12">
+              <SearchBar
+                initialSearch={search}
+                onSearch={handleSearch}
+                onReset={handleReset}
+              />
+            </div>
+            
             {loading ? ( // Tampilkan Skeleton jika loading
               [...Array((data && data.length) || 6)].map(
                 (
@@ -188,10 +160,9 @@ const Foto = () => {
                         <div className="xb-item--holder pos-rel">
                           <h6 className="xb-item--title">
                             <Link href={`/foto/${item.slug}`}>
-                              {item.title}
+                              {truncateHTML(item.title, 60)}
                             </Link>
                           </h6>
-                          <p className="xb-item--content">{item.title}</p>
                           <a
                             className="xb-item--link"
                             type="button"

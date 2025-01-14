@@ -202,10 +202,27 @@ const Home = () => {
           <div className="container">
             <div className="row mt-none-30">
               <div className="col-lg-3 mt-50">
+                <a
+                  href="https://www.komdigi.go.id/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <div className="xb-item--inner">
+                    <div className="">
+                      <Image
+                        src="/images/logo/komdigi.png"
+                        alt=""
+                        width={400}
+                        height={250}
+                      />
+                    </div>
+                  </div>
+                </a>
+
                 <div id="gpr-kominfo-widget-container" />
-                
+                {/* image */}
               </div>
-              <div className="col-lg-9 mt-30">
+              <div className="col-lg-9 mt-20">
                 <div className="row" style={{ paddingLeft: 30 }}>
                   <div className="xb-service__top ul_li_between">
                     <div className="sec-title sec-title--travel">
@@ -232,7 +249,7 @@ const Home = () => {
 
                 <div className="row">
                   {mainArticle && (
-                    <div className="col-lg-8 mt-30">
+                    <div className="col-lg-8 mt-20">
                       <div className="xb-blog2 xb-blog2--big">
                         <div className="xb-item--inner">
                           <div className="xb-item--img">
@@ -298,9 +315,9 @@ const Home = () => {
                             </h2>
                             <p
                               className="xb-item--content"
-                              style={{ fontSize: 14 }}
+                              style={{ fontSize: 15 }}
                             >
-                              {truncateHTML(mainArticle.content, 170)}
+                              {truncateHTML(mainArticle.content, 145)}
                             </p>
                           </div>
                         </div>
@@ -308,10 +325,8 @@ const Home = () => {
                     </div>
                   )}
 
-                  
-
                   {/* Additional Articles Section */}
-                  <div className="col-lg-4 mt-20">
+                  <div className="col-lg-4 ">
                     <div className="xb-blog-list">
                       {loading ? (
                         <p>Loading...</p>
@@ -351,9 +366,9 @@ const Home = () => {
                                 </h2>
                                 <p
                                   className="xb-item--content"
-                                  style={{ fontSize: 14 }}
+                                  style={{ fontSize: 14  }}
                                 >
-                                  {truncateHTML(item.content, 80)}
+                                  {truncateHTML(item.content, 110)}
                                 </p>
                               </div>
                             </div>
@@ -370,22 +385,22 @@ const Home = () => {
           <div className="blog-shape">
             <div className="shape shape--1">
               <div className="shape-inner" data-parallax='{"x":-50,"y":-70}'>
-                <Image
+                {/* <Image
                   src="/images/shape/b_shape1.png"
                   alt=""
                   width={100}
                   height={100}
-                />
+                /> */}
               </div>
             </div>
             <div className="shape shape--2">
               <div className="shape-inner" data-parallax='{"x":50,"y":-80}'>
-                <Image
+                {/* <Image
                   src="/images/shape/b_shape2.png"
                   alt=""
                   width={100}
                   height={100}
-                />
+                /> */}
               </div>
             </div>
           </div>
