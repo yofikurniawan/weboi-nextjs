@@ -210,7 +210,7 @@ const Home = () => {
                   <div className="xb-item--inner">
                     <div className="">
                       <Image
-                        src="/images/logo/komdigi.png"
+                        src="https://dev-backend.oganilirkab.go.id/images/komdigi.png"
                         alt=""
                         width={400}
                         height={250}
