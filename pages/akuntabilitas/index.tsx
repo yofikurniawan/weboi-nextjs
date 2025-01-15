@@ -241,17 +241,31 @@ const Akuntabilitas = () => {
                                 <button
                                   className="btn btn-primary btn-sm"
                                   onClick={() => {
-                                    const link = document.createElement("a");
-                                    link.target = "_blank"; // Tambahkan target blank di sini
-                                    link.href = akuntabilitas[0].file;
-                                    link.download = akuntabilitas[0].file;
-                                    document.body.appendChild(link);
-                                    link.click();
-                                    document.body.removeChild(link);
+                                    if (
+                                      akuntabilitas[0].type == "file"
+                                    ) {
+                                      // If type is 'file', download the file
+                                      const link = document.createElement("a");
+                                      link.target = "_blank"; // Open the file in a new tab
+                                      link.href = akuntabilitas[0].file;
+                                      link.download = akuntabilitas[0].file; // Download the file
+                                      document.body.appendChild(link);
+                                      link.click();
+                                      document.body.removeChild(link);
+                                    } else if (
+                                      akuntabilitas[0].type == "link"
+                                    ) {
+                                      // If type is 'link', open the URL in a new tab
+                                      window.open(
+                                        akuntabilitas[0].file,
+                                        "_blank"
+                                      );
+                                    }
                                   }}
                                 >
-                                  Unduh Dokumen
-                                  
+                                  {akuntabilitas[0].type == "file"
+                                    ? "Unduh Dokumen"
+                                    : "Buka Link"}
                                 </button>
                               ) : (
                                 <p>Dokumen tidak tersedia</p>
@@ -344,18 +358,25 @@ const Akuntabilitas = () => {
                                       style={{ alignItems: "flex-end" }}
                                       className="btn btn-primary btn-sm"
                                       onClick={() => {
-                                        const link =
-                                          document.createElement("a");
-                                        link.href = item.file;
-                                        link.target = "_blank"; // Tambahkan target blank di sini
-                                        link.download = item.file;
-                                        document.body.appendChild(link);
-                                        link.click();
-                                        document.body.removeChild(link);
+                                        if (item.type == "file") {
+                                          // If type is 'file', download the file
+                                          const link =
+                                            document.createElement("a");
+                                          link.href = item.file;
+                                          link.target = "_blank"; // Opens the file in a new tab
+                                          link.download = item.file; // Download the file
+                                          document.body.appendChild(link);
+                                          link.click();
+                                          document.body.removeChild(link);
+                                        } else if (item.type === "link") {
+                                          // If type is 'link', open the URL in a new tab
+                                          window.open(item.file, "_blank");
+                                        }
                                       }}
                                     >
-                                      Unduh Dokumen
-                                      
+                                      {item.type == "file"
+                                        ? "Unduh Dokumen"
+                                        : "Buka Link"}
                                     </button>
                                   )}
                                 </div>

@@ -366,7 +366,7 @@ const Home = () => {
                                 </h2>
                                 <p
                                   className="xb-item--content"
-                                  style={{ fontSize: 14  }}
+                                  style={{ fontSize: 14 }}
                                 >
                                   {truncateHTML(item.content, 110)}
                                 </p>
@@ -851,6 +851,42 @@ const Home = () => {
           </div>
         </section> */}
         {/* coaching single end */}
+
+        {pengumumanData.map((item: any, index: number) => (
+          <Modal
+            key={index}
+            show={showModal}
+            onHide={handleClose}
+            className="modal-centered"
+          >
+            <Modal.Header closeButton>
+              <Modal.Title style={{ color: "white", textAlign: "center" }}>
+                {item.title} {/* Tampilkan title dari setiap item */}
+              </Modal.Title>
+            </Modal.Header>
+            <Modal.Body style={{ maxHeight: "400px", overflowY: "auto" }}>
+              {" "}
+              {/* Batasi tinggi modal dan tambahkan scroll */}
+              <div className="text-center">
+                <Image
+                  src={`https://oganilirkab.go.id/storage/images/thumbnail/${item.thumbnail}`}
+                  alt={item.title}
+                  style={{ width: "auto", height: "300px" }}
+                  width={0}
+                  height={0}
+                  sizes="100vw"
+                />
+              </div>
+              <div dangerouslySetInnerHTML={{ __html: item.content }}></div>{" "}
+              {/* Konten dengan HTML */}
+            </Modal.Body>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={handleClose}>
+                Tutup
+              </Button>
+            </Modal.Footer>
+          </Modal>
+        ))}
 
         {/* coaching single start */}
         <MediaSosial />

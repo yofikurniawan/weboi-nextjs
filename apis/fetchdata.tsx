@@ -164,6 +164,24 @@ export async function fetchDataVideo(page: string = "1", search: string = "") {
   }
 }
 
+// video terbaru
+export async function fetchDataVideoTerbaru() {
+  try {
+    const res = await axios.get(`${baseUri}/video-terbaru`, {
+      headers: {
+        "Content-Type": "application/json",
+        "X-API-Key": apiKey,
+      },
+    });
+    return res.data;
+  } catch (error) {
+    return {
+      status: "error",
+      message: error,
+    };
+  }
+}
+
 // detail video slug
 export async function fetchDataDetailVideo(slug: string) {
   try {
