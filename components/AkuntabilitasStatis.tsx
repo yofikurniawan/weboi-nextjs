@@ -59,7 +59,7 @@ export default function AkuntabilitasStatis() {
     <section className="testimonial bg_img pt-55 pb-30">
       <div className="container">
         <div className="row align-items-center">
-          <div className="col-lg-4">
+          <div className="col-lg-3">
             <div className="sec-title margin-none-md mb-30-xs ">
               <h2 className="mb-70 wow skewIn">
                 Akuntabilitas <br />
@@ -90,13 +90,13 @@ export default function AkuntabilitasStatis() {
               </div>
             </div>
           </div>
-          <div className="col-lg-8">
+          <div className="col-lg-9">
             <div className="xb-swiper-sliders">
               {loading ? (
                 <Swiper
                   onSwiper={onSwiper}
                   modules={[Navigation, Pagination]}
-                  spaceBetween={20}
+                  spaceBetween={15}
                   slidesPerView={3} // Show 2 slides
                   pagination={false} // Set pagination to false
                   navigation={{
@@ -105,7 +105,7 @@ export default function AkuntabilitasStatis() {
                   }}
                 >
                   {/* Display skeleton loaders when loading */}
-                  {[...Array(2)].map((_, index) => (
+                  {[...Array(3)].map((_, index) => (
                     <SwiperSlide key={index}>
                       <div className="xb-destination">
                         <Skeleton height={600} width={800} />
@@ -143,8 +143,8 @@ export default function AkuntabilitasStatis() {
                           <Image
                             src={item.foto}
                             alt=""
-                            width={800}
-                            height={500}
+                            width={400}
+                            height={400}
                             style={{
                               borderRadius: "20px",
                               objectFit: "cover",
