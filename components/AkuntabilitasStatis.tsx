@@ -60,14 +60,11 @@ export default function AkuntabilitasStatis() {
       <div className="container">
         <div className="row align-items-center">
           <div className="col-lg-4">
-            <div className="sec-title margin-none-md mb-30-xs mb-125">
+            <div className="sec-title margin-none-md mb-30-xs ">
               <h2 className="mb-70 wow skewIn">
                 Akuntabilitas <br />
                 <span>Pemerintah Daerah</span>
               </h2>
-              <p className="description wow fadeInUp">
-                Berikut adalah beberapa kategori akuntabilitas pemerintah daerah
-              </p>
               <div
                 className="btns pt-20 wow fadeInUp"
                 data-wow-delay="600ms"
@@ -99,8 +96,8 @@ export default function AkuntabilitasStatis() {
                 <Swiper
                   onSwiper={onSwiper}
                   modules={[Navigation, Pagination]}
-                  spaceBetween={50}
-                  slidesPerView={2} // Show 2 slides
+                  spaceBetween={20}
+                  slidesPerView={3} // Show 2 slides
                   pagination={false} // Set pagination to false
                   navigation={{
                     nextEl: ".tm-button-next",
@@ -113,7 +110,8 @@ export default function AkuntabilitasStatis() {
                       <div className="xb-destination">
                         <Skeleton height={600} width={800} />
                         <div className="xb-item--holder">
-                          <Skeleton width="60%" />
+                          <Skeleton width="30%" />
+                          <Skeleton width="30%" />
                           <Skeleton width="40%" />
                         </div>
                       </div>
@@ -126,8 +124,8 @@ export default function AkuntabilitasStatis() {
                 <Swiper
                   onSwiper={onSwiper}
                   modules={[Navigation, Pagination]}
-                  spaceBetween={50}
-                  slidesPerView={2} // Show 2 slides
+                  spaceBetween={20}
+                  slidesPerView={3} // Show 2 slides
                   pagination={false} // Set pagination to false
                   navigation={{
                     nextEl: ".tm-button-next",
@@ -147,13 +145,11 @@ export default function AkuntabilitasStatis() {
                             alt=""
                             width={800}
                             height={500}
-                            style={
-                              {
-                                borderRadius: "20px",
-                                objectFit: "cover",
-                                border: "1px solidrgb(95, 65, 65)",
-                              }
-                            }
+                            style={{
+                              borderRadius: "20px",
+                              objectFit: "cover",
+                              border: "1px solidrgb(95, 65, 65)",
+                            }}
                           />
                           <div className="xb-item--holder">
                             <h3 className="xb-item--title">{item.name}</h3>
