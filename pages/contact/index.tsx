@@ -1,43 +1,65 @@
-import { useEffect, useState } from "react";
+import React from "react";
+import Skeleton from "react-loading-skeleton";
 import Image from "next/image";
 import Breadcrumb from "../../components/Breadcrumb";
 import { fetchDataIdentity } from "@/apis/fetchdata";
+import { useEffect, useState } from "react";
+import "react-loading-skeleton/dist/skeleton.css";
 
-const Contact: React.FC = () => {
-  const [identity, setIdentity] = useState<any>({});
-  const [loading, setLoading] = useState<boolean>(true);
-  const [errorMessage, setErrorMessage] = useState<string>("");
+const Contact = () => {
+  const [identity, setIdentity] = useState<any>(null);
 
   useEffect(() => {
     const fetchData = async () => {
-      setLoading(true); // Set loading to true saat fetching data
       try {
         const res = await fetchDataIdentity();
         if (res && res.success && res.data) {
-          setIdentity(res.data); // Mengambil data dari objek data
-          setErrorMessage(""); // Reset error message jika data ditemukan
-        } else {
-          setErrorMessage("Data identitas tidak ditemukan.");
+          setIdentity(res.data);
         }
       } catch (error) {
-        setErrorMessage("Gagal memuat data identitas.");
-      } finally {
-        setLoading(false); // Set loading ke false setelah fetching
+        console.error("Error fetching data:", error);
       }
     };
 
     fetchData();
   }, []);
 
-  type BreadcrumbType = {
-    title: string;
-    url?: string;
-  };
+  const breadcrumbData = [{ title: "Beranda", url: "/" }, { title: "Kontak" }];
 
-  const breadcrumbData: BreadcrumbType[] = [
-    { title: "Beranda", url: "/" },
-    { title: "Kontak" },
-  ];
+  const ContactSkeleton = () => (
+    <div className="container">
+      <div className="sec-title mb-30">
+        <div className="mb-30">
+          <Skeleton height={40} width={300} />
+        </div>
+        <Skeleton height={100} width="55%" />
+      </div>
+      <div className="row align-items-center">
+        <div className="col-xl-8 col-lg-10">
+          <div className="single-content__feature ul_li">
+            {[1, 2, 3, 4, 5].map((index) => (
+              <div key={index} className="single-content-feature mb-4">
+                <div className="xb-item--inner ul_li">
+                  <div className="xb-item--icon">
+                    <Skeleton circle width={24} height={24} />
+                  </div>
+                  <div
+                    className="xb-item--title"
+                    style={{ marginLeft: "15px" }}
+                  >
+                    <Skeleton width={200} height={24} />
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+      <div className="map-container mt-4">
+        <Skeleton height={790} width={800} />
+      </div>
+    </div>
+  );
 
   return (
     <>
@@ -45,10 +67,8 @@ const Contact: React.FC = () => {
         <Breadcrumb breadcrumbData={breadcrumbData} />
 
         <section className="contact pt-120 pb-130">
-          {loading ? (
-            <p>Loading...</p>
-          ) : errorMessage ? (
-            <p className="text-danger">{errorMessage}</p>
+          {!identity ? (
+            <ContactSkeleton />
           ) : (
             <div className="container">
               <div className="sec-title mb-30">
@@ -115,7 +135,8 @@ const Contact: React.FC = () => {
                       </div>
                     </div>
 
-                    {/* Instagram Section */}
+                    {/* Social Media Sections */}
+                    {/* Instagram */}
                     <div className="single-content-feature">
                       <div className="xb-item--inner color-4 ul_li">
                         <div className="xb-item--icon">
@@ -139,7 +160,7 @@ const Contact: React.FC = () => {
                       </div>
                     </div>
 
-                    {/* Facebook Section */}
+                    {/* Facebook */}
                     <div className="single-content-feature">
                       <div className="xb-item--inner color-3 ul_li">
                         <div className="xb-item--icon">
@@ -163,7 +184,7 @@ const Contact: React.FC = () => {
                       </div>
                     </div>
 
-                    {/* YouTube Section */}
+                    {/* YouTube */}
                     <div className="single-content-feature">
                       <div className="xb-item--inner color-4 ul_li">
                         <div className="xb-item--icon">
@@ -186,18 +207,6 @@ const Contact: React.FC = () => {
                         </h3>
                       </div>
                     </div>
-
-                    {/* CSS for Links */}
-                    <style jsx>{`
-                      .no-link-style {
-                        color: inherit; /* Menjaga warna teks */
-                        text-decoration: none; /* Menghapus underline */
-                      }
-
-                      .no-link-style:hover {
-                        color: #f06292; /* Warna saat hover */
-                      }
-                    `}</style>
                   </div>
                 </div>
               </div>
@@ -215,6 +224,26 @@ const Contact: React.FC = () => {
           )}
         </section>
       </div>
+
+      <style jsx>{`
+        .no-link-style {
+          color: inherit;
+          text-decoration: none;
+        }
+
+        .no-link-style:hover {
+          color: #f06292;
+        }
+
+        .ul_li {
+          display: flex;
+          align-items: center;
+        }
+
+        .single-content-feature {
+          margin-bottom: 20px;
+        }
+      `}</style>
     </>
   );
 };
