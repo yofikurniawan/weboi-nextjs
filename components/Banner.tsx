@@ -64,7 +64,7 @@ const Banner = () => {
   };
 
   return (
-    <section className="testimonial bg_img pt-210 pb-100">
+    <section className="testimonial bg_img ">
       <div className="container">
         <div className="row align-items-center">
           <div className="col-lg-12">

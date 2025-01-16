@@ -280,12 +280,31 @@
     border: 1px solid #ddd;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    height: 450px; /* Default height for desktop */
+    height: 430px; /* Default height for desktop */
+}
+
+.medsos-yt {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    height: 430px; /* Default height for desktop */
+}
+
+.frame-yt-main {
+    height: 265px;
+    border-radius: 12px;
 }
 
 @media (max-width: 768px) {
     .medsos-css {
         height: 480px; /* Height for mobile */
+    }
+    .medsos-yt {
+        height: 500px; /* Height for mobile */
+    }
+    .frame-yt-main {
+        height: 300px;
     }
 }
 

@@ -4,7 +4,7 @@ const MediaSosial = () => {
 
   return (
     <div>
-      <section className="blog pos-rel pt-130 pb-130">
+      <section className="blog pos-rel pt-130 pb-50">
         <div className="container">
           <div className="row mt-none-30">
             <div className="col-lg-6">
@@ -28,12 +28,11 @@ const MediaSosial = () => {
             </div>
           </div>
           <div className="d-flex gap-3 responsive-flex">
-            <div>
+            <div className="medsos-yt">
               <div className="xb-blog2">
                 <iframe
+                  className="frame-yt-main"
                   width="100%"
-                  height={315}
-                  style={{ borderRadius: 12 }}
                   src="https://www.youtube.com/embed/UAMSGOspekA?si=U9XL3EQl9pSJn1U5"
                   title="YouTube video player"
                   frameBorder={0}
@@ -43,7 +42,12 @@ const MediaSosial = () => {
                 />
               </div>
               <div className="row mt-10">
-                <div className="xb-blog-list d-flex flex-wrap gap-2">
+                <div className="xb-blog-list d-flex flex-wrap gap-2"  style={
+                  {
+                    paddingLeft: 10,
+                    paddingRight: 10,
+                  }
+                } > 
                   <div className="col mx-auto">
                     <div className="xb-blog">
                       <iframe
