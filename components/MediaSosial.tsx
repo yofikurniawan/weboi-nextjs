@@ -1,6 +1,66 @@
 import { useEffect, useState } from "react";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+import { fetchDataVideoTerbaru } from "@/apis/fetchdata";
 
 const MediaSosial = () => {
+  const [videos, setVideos] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    fetchDataVideoTerbaru()
+      .then((res: any) => {
+        if (res?.data) {
+          setVideos(res.data);
+          setError(null);
+        } else {
+          setError("Data tidak ditemukan.");
+        }
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching videos:", error);
+        setError("Terjadi kesalahan saat mengambil data. Silakan coba lagi.");
+        setLoading(false);
+      });
+  }, []);
+
+    if (loading) {
+      return (
+        <SkeletonTheme baseColor="#e0e0e0" highlightColor="#f0f0f0">
+          <div className="container">
+            <div className="row mt-50">
+              <div className="col-12 col-lg-7">
+                <Skeleton height={500} style={{ borderRadius: 12 }} />
+              </div>
+              <div className="col-12 col-lg-2">
+                <div className="d-flex flex-column gap-3">
+                  {[...Array(4)].map((_, index) => (
+                    <Skeleton
+                      key={index}
+                      height={120}
+                      style={{ borderRadius: 12 }}
+                    />
+                  ))}
+                </div>
+              </div>
+              <div className="col-12 col-lg-3">
+                <Skeleton height={500} style={{ borderRadius: 12 }} />
+              </div>
+            </div>
+          </div>
+        </SkeletonTheme>
+      );
+    }
+  
+    if (error) {
+      return (
+        <div className="container mt-50">
+          <div className="alert alert-danger text-center">{error}</div>
+        </div>
+      );
+    }
 
   return (
     <div>
@@ -30,84 +90,43 @@ const MediaSosial = () => {
           <div className="d-flex gap-3 responsive-flex">
             <div className="medsos-yt">
               <div className="xb-blog2">
-                <iframe
-                  className="frame-yt-main"
-                  width="100%"
-                  src="https://www.youtube.com/embed/UAMSGOspekA?si=U9XL3EQl9pSJn1U5"
-                  title="YouTube video player"
-                  frameBorder={0}
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  referrerPolicy="strict-origin-when-cross-origin"
-                  allowFullScreen=""
-                />
+                {videos.length > 0 && (
+                  <iframe
+                    className="frame-yt-main"
+                    width="100%"
+                    src={`https://www.youtube.com/embed/${videos[0]?.link}`}
+                    title="YouTube video player"
+                    frameBorder={0}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerPolicy="strict-origin-when-cross-origin"
+                  />
+                )}
               </div>
               <div className="row mt-10">
-                <div className="xb-blog-list d-flex flex-wrap gap-2"  style={
-                  {
+                <div
+                  className="xb-blog-list d-flex flex-wrap gap-2"
+                  style={{
                     paddingLeft: 10,
                     paddingRight: 10,
-                  }
-                } > 
-                  <div className="col mx-auto">
-                    <div className="xb-blog">
-                      <iframe
-                        width="100%"
-                        height={120}
-                        style={{ borderRadius: 12 }}
-                        src="https://www.youtube.com/embed/UAMSGOspekA?si=U9XL3EQl9pSJn1U5"
-                        title="YouTube video player"
-                        frameBorder={0}
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        referrerPolicy="strict-origin-when-cross-origin"
-                        allowFullScreen=""
-                      />
+                  }}
+                >
+                  {videos.slice(1, 5).map((video, index) => (
+                    // eslint-disable-next-line react/jsx-key
+                    <div className="col mx-auto">
+                      <div className="xb-blog">
+                        <iframe
+                          width="100%"
+                          height={120}
+                          style={{ borderRadius: 12 }}
+                          src={`https://www.youtube.com/embed/${video.link}`}
+                          title="YouTube video player"
+                          frameBorder={0}
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                          referrerPolicy="strict-origin-when-cross-origin"
+                        />
+                      </div>
                     </div>
-                  </div>
-                  <div className="col mx-auto">
-                    <div className="xb-blog">
-                      <iframe
-                        width="100%"
-                        height={120}
-                        style={{ borderRadius: 12 }}
-                        src="https://www.youtube.com/embed/Dt__QQfRxEA?si=ItTDbfLbwMnBYayn"
-                        title="YouTube video player"
-                        frameBorder={0}
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        referrerPolicy="strict-origin-when-cross-origin"
-                        allowFullScreen=""
-                      />
-                    </div>
-                  </div>
-                  <div className="col mx-auto">
-                    <div className="xb-blog">
-                      <iframe
-                        width="100%"
-                        height={120}
-                        style={{ borderRadius: 12 }}
-                        src="https://www.youtube.com/embed/Dt__QQfRxEA?si=ItTDbfLbwMnBYayn"
-                        title="YouTube video player"
-                        frameBorder={0}
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        referrerPolicy="strict-origin-when-cross-origin"
-                        allowFullScreen=""
-                      />
-                    </div>
-                  </div>
-                  <div className="col mx-auto">
-                    <div className="xb-blog">
-                      <iframe
-                        width="100%"
-                        height={120}
-                        style={{ borderRadius: 12 }}
-                        src="https://www.youtube.com/embed/Dt__QQfRxEA?si=ItTDbfLbwMnBYayn"
-                        title="YouTube video player"
-                        frameBorder={0}
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        referrerPolicy="strict-origin-when-cross-origin"
-                        allowFullScreen=""
-                      />
-                    </div>
-                  </div>
+                  ))}
                 </div>
               </div>
             </div>

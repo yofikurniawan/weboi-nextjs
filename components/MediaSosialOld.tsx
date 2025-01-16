@@ -177,8 +177,6 @@ const MediaSosialOld = () => {
                 width={420}
                 height={750}
                 style={{ border: "none", overflow: "hidden" }}
-                scrolling="no"
-                allowFullScreen="true"
                 allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
               />
               {/*  */}
