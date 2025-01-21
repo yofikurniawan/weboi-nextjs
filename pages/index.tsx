@@ -869,7 +869,7 @@ const Home = () => {
               {/* Batasi tinggi modal dan tambahkan scroll */}
               <div className="text-center">
                 <Image
-                  src={`https://oganilirkab.go.id/storage/images/thumbnail/${item.thumbnail}`}
+                  src={`${item.thumbnail}`}
                   alt={item.title}
                   style={{ width: "auto", height: "300px" }}
                   width={0}

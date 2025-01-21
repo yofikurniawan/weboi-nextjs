@@ -135,8 +135,7 @@ const Pengumuman = () => {
                         <Link href={`/pengumuman/${item.slug}`}>
                           <Image
                             src={
-                              item.thumbnail ||
-                              "/images/aplikasi_icon/oganilirbangkit.png"
+                              item.thumbnail 
                             }
                             alt={item.title}
                             width={1250}

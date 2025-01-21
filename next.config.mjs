@@ -5,7 +5,7 @@ const nextConfig = {
     return [
       {
         source: "/api/:path*", // Path API di Next.js
-        destination: "http://dev.oganilirkab.go.id/api/:path*", // URL backend Laravel
+        destination: "https://dev-backend.oganilirkab.go.id/api/:path*", // URL backend Laravel
       },
     ];
   },
