@@ -78,11 +78,8 @@ const MediaSosial = () => {
             <div className="col-lg-5 offset-lg-1">
               <div className="sec-title mb-20">
                 <p>
-                  <span className="title_spbe text-dark fw-bold">
-                    Temukan Media Sosial Resmi Pemerintah Daerah Kabupaten Ogan
-                    Ilir
-                  </span>{" "}
-                  <br /> di Lingkungan Pemerintahan Daerah Kabupaten Ogan Ilir{" "}
+                  <span className="title_spbe text-dark fw-bold"></span> <br />
+                  Temukan Media Sosial Resmi Pemerintah Kabupaten Ogan Ilir{" "}
                 </p>
               </div>
             </div>

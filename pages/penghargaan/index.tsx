@@ -157,11 +157,15 @@ const Penghargaan = () => {
                     onChange={handleTahunChange}
                   >
                     <option value="">Semua Tahun</option>
-                    <option value="2025">2025</option>
-                    <option value="2024">2024</option>
-                    <option value="2023">2023</option>
-                    <option value="2022">2022</option>
-                    <option value="2021">2021</option>
+                    {[...Array(10)].map((_, index) => {
+                      const currentYear = new Date().getFullYear();
+                      const year = currentYear - index;
+                      return (
+                        <option key={year} value={year}>
+                          {year}
+                        </option>
+                      );
+                    })}
                   </select>
                 </div>
                 <div className="col-md-2">
@@ -193,35 +197,35 @@ const Penghargaan = () => {
                     <thead>
                       <tr>
                         <th className="bg-primary text-white">No</th>
-                        <th className="bg-primary text-white">Gambar</th>
-                        <th className="bg-primary text-white">Keterangan</th>
-                        <th className="bg-primary text-white">Tingkat/Level</th>
+                        <th className="bg-primary text-white">
+                          Nama Penghargaan
+                        </th>
+                        <th
+                          className="bg-primary text-white"
+                          style={{ width: 200 }}
+                        >
+                          Jenis Penghargaan
+                        </th>
+                        <th className="bg-primary text-white">Tingkat</th>
                         <th className="bg-primary text-white">Tahun</th>
+                        <th className="bg-primary text-white">
+                          Perangkat Daerah
+                        </th>
+                        <th className="bg-primary text-white">
+                          Instansi Pemberi Penghargaan
+                        </th>
                       </tr>
                     </thead>
                     <tbody>
                       {data.map((item, index) => (
                         <tr key={item.id}>
                           <td>{index + 1}</td>
-                          <td>
-                            <a
-                              href={item.thumbnail || "/img/web/sertfikat.webp"}
-                              data-bs-toggle="lightbox"
-                              data-bs-caption={item.nama_prestasi}
-                            >
-                              <Image
-                                src={
-                                  item.thumbnail || "/img/web/sertfikat.webp"
-                                }
-                                width={100}
-                                height={100}
-                                alt={item.nama_prestasi}
-                              />
-                            </a>
-                          </td>
                           <td>{item.nama_prestasi}</td>
+                          <td>{item.jenis_penghargaan}</td>
                           <td>{item.tingkat}</td>
                           <td>{item.tahun}</td>
+                          <td>{item.instansi}</td>
+                          <td>{item.penyelenggara}</td>
                         </tr>
                       ))}
                     </tbody>
