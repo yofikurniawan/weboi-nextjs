@@ -566,7 +566,7 @@ const Home = () => {
                         className="xb-cta2"
                         style={{
                           backgroundImage:
-                            "url('https://dev-backend.oganilirkab.go.id/storage/mpp/mppd.png')",
+                            "url('https://dev-backend.oganilirkab.go.id/storage/mpp/mppd-new.png')",
                         }}
                       >
                         <div className="sec-title sec-title--white sec-title--travel mt-20"></div>
