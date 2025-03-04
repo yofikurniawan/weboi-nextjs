@@ -289,7 +289,7 @@ const Akuntabilitas = () => {
                           <tr>
                             <th>No</th>
                             <th>Nama File</th>
-                            <th>Dokumen Tahun</th>
+                            {/* <th>Dokumen Tahun</th> */}
                             <th>Tanggal Upload</th>
                             <th>Aksi</th>
                           </tr>
@@ -299,7 +299,7 @@ const Akuntabilitas = () => {
                             <tr key={index}>
                               <td>{index + 1}</td>
                               <td>{item.name}</td>
-                              <td>{item.tahun}</td>
+                              {/* <td>{item.tahun}</td> */}
                               <td>{item.published_at}</td>
                               <td>
                                 {item.file ? (
