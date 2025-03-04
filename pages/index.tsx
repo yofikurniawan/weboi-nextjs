@@ -558,7 +558,7 @@ const Home = () => {
                   <div className="container">
                     <div className="row">
                       {/* Gambar Kiri */}
-                      <div className="col-6 text-center">
+                      <div className="col-12 text-center">
                         <Link
                           href="/mppd"
                           className="xb-brand2__mt slider"
@@ -569,54 +569,34 @@ const Home = () => {
                             className="xb-cta2"
                             style={{
                               backgroundImage:
-                                "url('https://dev-backend.oganilirkab.go.id/storage/mpp/5.png')",
+                                "url('https://dev-backend.oganilirkab.go.id/storage/mpp/MPP-new.png')",
                               backgroundSize: "cover",
                               backgroundPosition: "center",
-                              height: "200px",
+                              height: "350px",
                               borderRadius: "10px",
                             }}
                           ></div>
                         </Link>
-                        <button
-                          className="btn btn-primary mt-2"
-                          onClick={() => {
-                            window.open("https://www.komdigi.go.id/");
-                          }}
-                          style={{ width: "50%", padding: "10px" }}
-                        >
-                          MPP Nasional
-                        </button>
-                      </div>
-
-                      {/* Gambar Kanan */}
-                      <div className="col-6 text-center">
-                        <Link
-                          href="/mppd2"
-                          className="xb-brand2__mt slider"
-                          data-asw-orgfontsize={16}
-                          style={{ fontSize: 16 }}
-                        >
-                          <div
-                            className="xb-cta2"
-                            style={{
-                              backgroundImage:
-                                "url('https://dev-backend.oganilirkab.go.id/storage/mpp/6.png')",
-                              backgroundSize: "cover",
-                              backgroundPosition: "center",
-                              height: "200px",
-                              borderRadius: "10px",
+                        <div className="d-flex justify-content-center gap-2 mt-4">
+                          <button
+                            className="btn btn-primary"
+                            onClick={() => {
+                              window.open("https://mpp.oganilirkab.go.id/");
                             }}
-                          ></div>
-                        </Link>
-                        <button
-                          className="btn btn-primary mt-2"
-                          onClick={() => {
-                            window.open("https://www.komdigi.go.id/");
-                          }}
-                          style={{ width: "50%", padding: "10px" }}
-                        >
-                          MPP Daerah
-                        </button>
+                            style={{ width: "45%", padding: "10px" }}
+                          >
+                            MPP Pemda
+                          </button>
+                          <button
+                            className="btn btn-primary"
+                            onClick={() => {
+                              window.open("https://www.komdigi.go.id/");
+                            }}
+                            style={{ width: "45%", padding: "10px" }}
+                          >
+                            MPP Nasional
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </div>
