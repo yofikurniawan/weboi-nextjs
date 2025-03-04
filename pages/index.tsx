@@ -590,7 +590,9 @@ const Home = () => {
                           <button
                             className="btn btn-primary"
                             onClick={() => {
-                              window.open("https://www.komdigi.go.id/");
+                              window.open(
+                                "https://play.google.com/store/apps/details?id=com.mppdigital.app&hl=id&pli=1"
+                              );
                             }}
                             style={{ width: "45%", padding: "10px" }}
                           >
